@@ -1,6 +1,6 @@
 /////////////////////////////StarT//////////////////////////////
 #include<Wire.h>
-
+#define address 0x60 
 //--------------------------VAR-------------------------//
 int Compass;
 float reduction=1;
@@ -27,7 +27,7 @@ int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4],DSensor[20];
  int RX=0,TX=1,SET=2,D4=3,D3=4,D2=5,D1=6,RX1=7,TX1=8,PWM_MRF=22,PWM_MLF=21,PWM_MRB=20,PWM_MLB=10,BALL=39,SHOOT=11;
  int SDA1=18,SCLl=19,GPIO_MRF=24,GPIO_MLF=25,GPIO_MRB=26,GPIO_MLB=27,BUZ=28;
  int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31,FEEDBACK=21,SCENSE1=14,SCENSE2=15;
-int AD3=30,AD2=29,AD0=9,AD1=12,SENSOR[17],address;
+int AD3=30,AD2=29,AD0=9,AD1=12,SENSOR[17];
 int mlf,mrb,mlb,mrf;
 int srfL=121,srfB=122,srfR=123;
 //******************************************************//
