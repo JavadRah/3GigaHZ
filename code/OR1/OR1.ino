@@ -1085,7 +1085,7 @@ void bluetooth_manager(void)
 //14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 void get_battery_voltage()
 {
-  battery_voltage = (convert_adc(44) * 12.4) / 524;
+  battery_voltage = (FEEDBACK * 12.7) / 524;
 }
 
 //15///////////////////////WIN///////////////////////
