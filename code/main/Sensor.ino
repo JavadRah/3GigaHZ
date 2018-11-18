@@ -91,4 +91,26 @@ void biggest(void)
   big_sensor_num = c;
 
 }
+///////////////////////SHOW Kaf/////////////////////////////////////
+void SHOWKAF(void){
+     Serial.println(" SHOW KAF:");
+     Serial.println("KAF F:");
+     Serial.println(kaf_F[0]);
+     Serial.println("KAF R:");
+     Serial.println(kaf_R[0]);
+     Serial.println("KAF B:");
+     Serial.println(kaf_B[0]);
+     Serial.println("KAF L:");
+     Serial.println(kaf_L[0]);
 
+     Serial.println("KAF F:");
+     Serial.println(kaf_F[1]);
+     Serial.println("KAF R:");
+     Serial.println(kaf_R[1]);
+     Serial.println("KAF B:");
+     Serial.println(kaf_B[1]);
+     Serial.println("KAF L:");
+     Serial.println(kaf_L[1]);
+
+  
+}

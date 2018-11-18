@@ -115,8 +115,8 @@ void setup()
   pinMode(SET, INPUT_PULLUP);
   //pinMode(,);
   //=============================================//
- //Serial.begin(38400);
- Serial.begin(9600);
+  Serial.begin(38400);
+// Serial.begin(9600);
   set_m = spin_speed(1, 15, 3);
   set_s = spin_speed(1, 15, 7);
   
@@ -124,10 +124,11 @@ void setup()
 
 void loop()
 {
- sprintf (cmp,"%03d", Compass);
+ /*sprintf (cmp,"%03d", Compass);
  Serial.println(cmp);
   sprintf (bigsensor,"%03d", Compass);
  Serial.println(bigsensor);
   sprintf (bigsensornum,"%03d", Compass);
- Serial.println(bigsensornum);
+ Serial.println(bigsensornum);*/
+ SHOWKAF();
 }
