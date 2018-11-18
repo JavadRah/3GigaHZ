@@ -23,7 +23,7 @@ unsigned int distance = 700 , noise = 300;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2];
 //
-char cmp[3];
+char cmp[3],bigsensor[3],bigsensornum[2];
 //
 //eeprom
 //**************************PINS*************************//
@@ -119,9 +119,15 @@ void setup()
  Serial.begin(9600);
   set_m = spin_speed(1, 15, 3);
   set_s = spin_speed(1, 15, 7);
+  
 }
 
 void loop()
 {
- 
+ sprintf (cmp,"%03d", Compass);
+ Serial.println(cmp);
+  sprintf (bigsensor,"%03d", Compass);
+ Serial.println(bigsensor);
+  sprintf (bigsensornum,"%03d", Compass);
+ Serial.println(bigsensornum);
 }
