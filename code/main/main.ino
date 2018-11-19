@@ -123,7 +123,21 @@ void setup()
 // Serial.begin(9600);
   set_m = spin_speed(1, 15, 3);
   set_s = spin_speed(1, 15, 7);
-  if(SET==HIGH)
+
+}
+
+void loop()
+{
+ /*sprintf (cmp,"%03d", Compass);
+ Serial.println(cmp);
+ delay(100);
+ sprintf (bigsensor,"%03d", Compass);
+ Serial.println(bigsensor);
+ delay(100);
+ sprintf (bigsensornum,"%03d", Compass);
+ Serial.println(bigsensornum);
+ delay(100);*/
+   if(SET==HIGH)
     {
         while(SET==HIGH)
         {
@@ -143,15 +157,12 @@ void setup()
         SHOWKAF();
       }
     }
-}
+   if(D2==HIGH)
+    {
+      while(D2==HIGH)
+      {
+        SHOWSENSOR();
+      }
+    }
+    }
 
-void loop()
-{
- /*sprintf (cmp,"%03d", Compass);
- Serial.println(cmp);
-  sprintf (bigsensor,"%03d", Compass);
- Serial.println(bigsensor);
-  sprintf (bigsensornum,"%03d", Compass);
- Serial.println(bigsensornum);*/
- SHOWKAF();
-}

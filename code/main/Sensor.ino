@@ -94,22 +94,22 @@ void biggest(void)
 ///////////////////////SHOW Kaf/////////////////////////////////////
 void SHOWKAF(void){
      Serial.println(" SHOW KAF:");
-     Serial.println("KAF F:");
+     Serial.print("KAF F:");
      Serial.println(kaf_F[0]);
-     Serial.println("KAF R:");
+     Serial.print("KAF R:");
      Serial.println(kaf_R[0]);
-     Serial.println("KAF B:");
+     Serial.print("KAF B:");
      Serial.println(kaf_B[0]);
-     Serial.println("KAF L:");
+     Serial.print("KAF L:");
      Serial.println(kaf_L[0]);
 
-     Serial.println("KAF F:");
+     Serial.print("KAF F:");
      Serial.println(kaf_F[1]);
-     Serial.println("KAF R:");
+     Serial.print("KAF R:");
      Serial.println(kaf_R[1]);
-     Serial.println("KAF B:");
+     Serial.print("KAF B:");
      Serial.println(kaf_B[1]);
-     Serial.println("KAF L:");
+     Serial.print("KAF L:");
      Serial.println(kaf_L[1]);
 
 }
@@ -141,3 +141,16 @@ void Kaf_setup (void)
     B_noise [0]= kaf_B[0] - 25;
     B_noise [1]= kaf_B[1] - 25;
  }
+ void SHOWSENSOR(void)
+ {
+    sprintf (bigsensornum,"%03d", Compass);
+    Serial.print("big sensor number=");
+    Serial.println(bigsensornum);
+    delay(50);
+    sprintf (bigsensor,"%03d", Compass);
+    Serial.print("big sensor=");
+    Serial.println(bigsensor);
+    delay(50);
+ }
+ 
+
