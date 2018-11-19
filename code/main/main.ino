@@ -112,14 +112,37 @@ void setup()
   pinMode(SOLA, OUTPUT);
   pinMode(SOLB, OUTPUT);
   pinMode(BUZ, OUTPUT);
-  pinMode(SET, INPUT_PULLUP);
+  pinMode(SET, OUTPUT);//pullup??
+  pinMode(D1,OUTPUT);
+  pinMode(D2,OUTPUT);
+  pinMode(D3,OUTPUT);
+  pinMode(D4,OUTPUT);
   //pinMode(,);
   //=============================================//
   Serial.begin(38400);
 // Serial.begin(9600);
   set_m = spin_speed(1, 15, 3);
   set_s = spin_speed(1, 15, 7);
-  
+  if(SET==HIGH)
+    {
+        while(SET==HIGH)
+        {
+            Read_Compass();
+            refreshs();
+           pinMode(BUZ,HIGH);
+           delay(100);
+        }
+        pinMode(BUZ,LOW);
+        SETUP = n_cmp;
+        Kaf_setup();
+    }
+    if(D1==HIGH)
+    {
+      while(D1==HIGH)
+      {
+        SHOWKAF();
+      }
+    }
 }
 
 void loop()

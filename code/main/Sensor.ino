@@ -112,5 +112,32 @@ void SHOWKAF(void){
      Serial.println("KAF L:");
      Serial.println(kaf_L[1]);
 
-  
 }
+void Kaf_setup (void)
+ {
+    refreshs ();
+    kaf_F [0] = 1023 - SOFA ;
+    kaf_F [1] = 1023 - SOFB ;
+
+    kaf_R [0] = 1023 - SORA ;
+    kaf_R [1] = 1023 - SOBA ;
+
+    kaf_B [0] = 1023 - SOBA ;
+    kaf_B [1] = 1023 - SOBB ;
+
+    kaf_L [0] = 1023 - SOLA ;
+    kaf_L [1] = 1023 - SOLB ;
+
+    L_noise [0]= kaf_L[0] - 20;
+    L_noise [1]= kaf_L[1] - 25;
+
+    R_noise [0]= kaf_R[0] - 20;
+    R_noise [1]= kaf_R[1] - 25;
+
+
+    F_noise [0]= kaf_F[0] - 20;
+    F_noise [1]= kaf_F[1] - 20;
+
+    B_noise [0]= kaf_B[0] - 25;
+    B_noise [1]= kaf_B[1] - 25;
+ }
