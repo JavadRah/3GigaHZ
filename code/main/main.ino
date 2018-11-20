@@ -4,7 +4,7 @@
 //--------------------------VAR-------------------------//
 //int Compass;
 //float reduction = 1;
-//unsigned int n_cmp, big_sensor, big_sensor_num;
+unsigned int n_cmp, big_sensor, big_sensor_num;
 ////EEPROM write
 //unsigned char SETUP;
 //signed int set_m, set_s;
@@ -18,20 +18,19 @@
 //char bluetooth_input[9], other_dn, dn, c;
 //int other_big_sensor , other_sensor_value;
 //float battery_voltage, V;
-int Sensor=0;
+int Sensor;
 //unsigned int distance = 700 , noise = 300;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2];
 
-  int Sofa,Sofb,Sola,Solb,Sora,Sorb,Sobb,Soba;
-////
-//char cmp[3],bigsensor[3],bigsensornum[2];
+int Sofa,Sofb,Sola,Solb,Sora,Sorb,Sobb,Soba,fa,fb,la,lb,ra,rb,bb,ba;
+char cmp[3],bigsensor[3],bigsensornum[2];
 ////
 //eeprom
 //**************************PINS*************************//
-// int RX=0,TX=1,SET=2,D4=3,D3=4,D2=5,D1=6,RX1=7,TX1=8,PWM_MRF=22,PWM_MLF=21,PWM_MRB=20,PWM_MLB=10,BALL=39,SHOOT=11;
-// const int SDA1=18,SCLl=19,GPIO_MRF=24,GPIO_MLF=25,GPIO_MRB=26,GPIO_MLB=27/*,BUZ=28*/;
- int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31,FEEDBACK=21,SCENSE1=14,SCENSE2=15,BUZ=28;
+// int RX=0,TX=1,SET=2,RX1=7,TX1=8,PWM_MRF=22,PWM_MLF=21,PWM_MRB=20,PWM_MLB=10,SHOOT=11;
+// const int SDA1=18,SCLl=19,GPIO_MRF=24,GPIO_MLF=25,GPIO_MRB=26,GPIO_MLB=27,BUZ=28;
+ int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31,FEEDBACK=21,SCENSE1=14,SCENSE2=15,BUZ=28,BALL=39,D4=3,D3=4,D2=5,D1=6;
 int AD3=30,AD2=29,AD0=9,AD1=12,SENSOR[17];
 //int mlf,mrb,mlb,mrf;
 //int srfL=121,srfB=122,srfR=123;
@@ -98,23 +97,23 @@ void setup()
 //  pinMode(PWM_MLF, OUTPUT);
 //  pinMode(PWM_MRB, OUTPUT);
 //  pinMode(PWM_MLB, OUTPUT);
-//  pinMode(AD0, OUTPUT);
-//  pinMode(AD1, OUTPUT);
-//  pinMode(AD2, OUTPUT);
-//  pinMode(AD3, OUTPUT);
+  pinMode(AD0, OUTPUT);
+  pinMode(AD1, OUTPUT);
+  pinMode(AD2, OUTPUT);
+  pinMode(AD3, OUTPUT);
 //  pinMode(GPIO_MRF, OUTPUT);
 //  pinMode(GPIO_MLF, OUTPUT);
 //  pinMode(GPIO_MRB, OUTPUT);
 //  pinMode(GPIO_MLB, OUTPUT);
-//  pinMode(BALL, INPUT);
-  pinMode(34, INPUT);
-//  pinMode(SOBB, OUTPUT);
-//  pinMode(SOBA, OUTPUT);
-//  pinMode(SORA, OUTPUT);
-//  pinMode(SORB, OUTPUT);
- pinMode(33, INPUT);
-//  pinMode(SOLA, OUTPUT);
-//  pinMode(SOLB, OUTPUT);
+  pinMode(BALL, INPUT);
+  pinMode(SOFA,INPUT);
+//  pinMode(SOBB, INPUT);
+//  pinMode(SOBA, INPUT);
+//  pinMode(SORA, INPUT);
+//  pinMode(SORB, INPUT);
+ pinMode(SOFB,INPUT);
+//  pinMode(SOLA, INPUT);
+//  pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
 //  pinMode(SET, INPUT_PULLUP);//pullup??
 //  pinMode(D1,INPUT);
@@ -149,9 +148,9 @@ void loop()
  sprintf (bigsensornum,"%03d", Compass);
  Serial.println(bigsensornum);
  delay(100);*/
-//SHOWKAF();
+SHOWSENSOR();
   
-set_bits();
+
 
 //   if(SET==HIGH)
 //    {

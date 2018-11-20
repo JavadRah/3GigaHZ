@@ -41,7 +41,6 @@ void Kaf_setup (void)
 ////3///////////////////////////////////////////////
 void set_bits(void)
 {
-//  int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31
   ////////////////////Kaf
   kaf_F[0] =  analogRead(34);
   kaf_F[1] =  analogRead(33);
@@ -58,79 +57,68 @@ int fa,fb;
   //////////////////out of bound 1
  F_noise[0]= kaf_F[0] -20;
  F_noise [1]= kaf_F[1] - 45;
-    
-  if (R_noise[0]>=0)  {Sora = 1;}
-  else  { Sora = 0;}
+//    L_noise [0]= kaf_L[0] - 20;
+//    L_noise [1]= kaf_L[1] - 25;
+//    R_noise [0]= kaf_R[0] - 20;
+//    R_noise [1]= kaf_R[1] - 25;
+//    B_noise [0]= kaf_B[0] - 25;
+//    B_noise [1]= kaf_B[1] - 25;   
+  if (R_noise[0]>=0)  ra = 1;
+  else   ra = 0;
 
   if ( F_noise[0]>=0)  fa = 1;
   else   fa = 0;
   Serial.println(fa);
-  if ( L_noise[0]>=0)  Sola = 1;
-  else   Sola = 0;
+  if ( L_noise[0]>=0)  la = 1;
+  else   la = 0;
 
-  if ( B_noise[0]>=0)  Soba = 1;
-  else   Soba = 0;
+  if ( B_noise[0]>=0)  ba = 1;
+  else   ba = 0;
 
   //////////////////out of bound 2
-  if ( R_noise[1]>=0)  Sorb = 1;
-  else   Sorb = 0;
+  if ( R_noise[1]>=0)  rb = 1;
+  else   rb = 0;
 
   if (F_noise[1]>=0)  fb = 1;
   else   fb = 0;
 
-  if ( L_noise[1]>=0)  Solb = 1;
-  else   Solb = 0;
+  if ( L_noise[1]>=0)  lb = 1;
+  else  lb = 0;
 
-  if ( B_noise[1]>=0)  Sobb = 1;
-  else   Sobb = 0;
+  if ( B_noise[1]>=0)  bb = 1;
+  else   bb = 0;
 }
 
-//void refreshs(void)
-//{
-//  int k;
-//  for (k = 0; k < 16; k++)
-//  {
-//    SENSOR[k] = 1023 - analogRead(k);
-//    if (SENSOR[k] > 1000) SENSOR[k] = 0;
-//  }
-//
-//
-//}
+void refreshs(void)
+{
+  int k;
+  for (k = 0; k < 16; k++)
+  {
+    SENSOR[k] = 1023 - analogRead(k);
+    if (SENSOR[k] > 1000) SENSOR[k] = 0;
+  }
+}
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 //void get_battery_voltage()
 //{
 //  battery_voltage = (FEEDBACK * 12.7) / 524;
 //}
 ////20////////////////////BIG SENSOR/////////////////////////////////
-//void biggest(void)
-//{
-//  int i, c;
-//  int MAX = 0;
-//  for (i = 0; i < 16; i++)
-//  {
-//    if (MAX < SENSOR[i])
-//    {
-//      c = i;
-//      MAX = SENSOR[i];
-//    }
-//  }
-//  big_sensor = MAX;
-//  big_sensor_num = c;
-//
-//}
-
-//
-//    L_noise [0]= kaf_L[0] - 20;
-//    L_noise [1]= kaf_L[1] - 25;
-//
-//    R_noise [0]= kaf_R[0] - 20;
-//    R_noise [1]= kaf_R[1] - 25;
-//
-//
-   
-//
-//    B_noise [0]= kaf_B[0] - 25;
-//    B_noise [1]= kaf_B[1] - 25;
+void biggest(void)
+{
+  int i, c;
+  int MAX = 0;
+  for (i = 0; i < 16; i++)
+  {
+    if (MAX < SENSOR[i])
+    {
+      c = i;
+      MAX = SENSOR[i];
+    }
+  }
+  big_sensor = MAX;
+  big_sensor_num = c;
+}
 
 ///////////////////////SHOW Kaf/////////////////////////////////////
 void SHOWKAF(void)
@@ -170,15 +158,15 @@ void SHOWKAF(void)
 
 }
 
-// void SHOWSENSOR(void)
-// {
-//    sprintf (bigsensornum,"%03d", Compass);
-//    Serial.print("big sensor number=");
-//    Serial.println(bigsensornum);
-//    delay(50);
-//    sprintf (bigsensor,"%03d", Compass);
-//    Serial.print("big sensor=");
-//    Serial.println(bigsensor);
-//    delay(50);
-// }
-// 
+ void SHOWSENSOR(void)
+ {
+    sprintf (bigsensornum,"%03d", big_sensor_num);
+    Serial.print("big sensor number=");
+    Serial.println(bigsensornum);
+    delay(500);
+    sprintf (bigsensor,"%03d",big_sensor);
+    Serial.print("big sensor=");
+    Serial.println(bigsensor);
+    delay(500);
+ }
+ 
