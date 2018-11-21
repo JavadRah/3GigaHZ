@@ -3,7 +3,7 @@
 #define address 0x60 
 //--------------------------VAR-------------------------//
 //int Compass;
-float reduction =0.4;
+float reduction =1;
 unsigned int n_cmp, big_sensor, big_sensor_num;
 ////EEPROM write
 unsigned char SETUP;
@@ -146,13 +146,11 @@ analogWriteFrequency(6,29296);
 
 void loop()
 {
-  
-for(int i=0;i<16;i++){
-  Move(i);
-  delay(100);
-}
-
-
+MOTOR(512,0,0,0) ; 
+//for(int i=0;i<16;i++){
+//  Move(i);
+//  delay(100);
+//}
  /*sprintf (cmp,"%03d", Compass);
  Serial.println(cmp);
  delay(100);*/
@@ -160,9 +158,6 @@ for(int i=0;i<16;i++){
 //set_bits();  
 //refreshs();
 //convert_adc(0);
-//MOTOR(-1023,1023,-255,1023);
-//analogWrite(PWM_MLB,255);
-//digitalWrite(GPIO_MLB,HIGH);
 
 //   if(SET==HIGH)
 //    {
