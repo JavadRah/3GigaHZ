@@ -146,8 +146,13 @@ analogWriteFrequency(6,29296);
 
 void loop()
 {
-//  
-MOTOR(512,512,512,512);
+  
+for(int i=0;i<16;i++){
+  Move(i);
+  delay(100);
+}
+
+
  /*sprintf (cmp,"%03d", Compass);
  Serial.println(cmp);
  delay(100);*/
