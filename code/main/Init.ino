@@ -1,89 +1,88 @@
-////4/////////////MOTOR///////////////////////////////
-//void MOTOR(int pwmlf, int pwmlb, int pwmrf, int pwmrb)
-//{
-//
-//  pwmlf = pwmlf * 1 * reduction;
-//  pwmlb = pwmlb * 1 * reduction;
-//  pwmrf = pwmrf * 1 * reduction;
-//  pwmrb = pwmrb * 1 * reduction;
-//
-//
-//  if (pwmlf > 255)   pwmlf = 255;
-//  if (pwmlb > 255)   pwmlb = 255;
-//  if (pwmrb > 255)   pwmrb = 255;
-//  if (pwmrf > 255)   pwmrf = 255;
-//  if (pwmlf < -255)   pwmlf = -255;
-//  if (pwmlb < -255)   pwmlb = -255;
-//  if (pwmrb < -255)   pwmrb = -255;
-//  if (pwmrf < -255)   pwmrf = -255;
-//
-//  //*********************Left's MOTOR MAIN
-//  if (pwmlf > 0)
-//  {
-//    mlf = 0;
-//    PWM_MLF = pwmlf;
-//  }
-//  else if (pwmlf < 0)
-//  {
-//    mlf = 1;
-//    PWM_MLF = 255 + pwmlf;
-//  }
-//  else if (pwmlf == 0)
-//  {
-//    mlf = 1;
-//    PWM_MLF = 255;
-//  }
-//
-//  //*********************Left's MOTOR MAIN
-//  if (pwmlb > 0)
-//  {
-//    mlb = 0;
-//    PWM_MLB = pwmlb;
-//  }
-//  else if (pwmlb < 0)
-//  {
-//    mlb = 1;
-//    PWM_MLB = 255 + pwmlb;
-//  }
-//  else if (pwmlb == 0)
-//  {
-//    mlb = 1;
-//    PWM_MLB = 255;
-//  }
-//  //*********************Right's MOTOR MAIN
-//  if (pwmrf > 0)
-//  {
-//    mrf = 0;
-//    PWM_MRF = pwmrf;
-//  }
-//  else if (pwmrf < 0)
-//  {
-//    mrf = 1;
-//    PWM_MRF = 255 + pwmrf;
-//  }
-//  else if (pwmrf == 0)
-//  {
-//    mrf = 1;
-//    PWM_MRF = 255;
-//  }
-//  //*********************Right's MOTOR MAIN
-//  if (pwmrb > 0)
-//  {
-//    mrb = 0;
-//    PWM_MRB = pwmrb;
-//  }
-//  else if (pwmrb < 0)
-//  {
-//    mrb = 1;
-//    PWM_MRB = 255 + pwmrb;
-//
-//  }
-//  else if (pwmrb == 0)
-//  {
-//    mrb = 1;
-//    PWM_MRB = 255;
-//  }
-//}
+//4/////////////MOTOR///////////////////////////////
+void MOTOR(int pwmlf, int pwmlb, int pwmrf, int pwmrb)
+{
+
+  pwmlf = pwmlf * 1 * reduction;
+  pwmlb = pwmlb * 1 * reduction;
+  pwmrf = pwmrf * 1 * reduction;
+  pwmrb = pwmrb * 1 * reduction;
+
+
+  if (pwmlf > 1023)   pwmlf = 1023;
+  if (pwmlb > 1023)   pwmlb = 1023;
+  if (pwmrb > 1023)   pwmrb = 1023;
+  if (pwmrf > 1023)   pwmrf = 1023;
+  if (pwmlf < -1023)   pwmlf = -1023;
+  if (pwmlb < -1023)   pwmlb = -1023;
+  if (pwmrb < -1023)   pwmrb = -1023;
+  if (pwmrf < -1023)   pwmrf = -1023;
+
+  //*********************Left's MOTOR MAIN
+  if (pwmlf > 0)
+  {
+   digitalWrite(GPIO_MLF,LOW);
+    analogWrite(PWM_MLF,pwmlf);
+  }
+  else if (pwmlf < 0)
+  {
+   digitalWrite(GPIO_MLF,HIGH);
+    analogWrite(PWM_MLF,1023+pwmlf);
+  }
+  else if (pwmlf == 0)
+  {
+   //digitalWrite(mlf,HIGH);
+    analogWrite(PWM_MLF,0);
+  }
+
+  //*********************Left's MOTOR MAIN
+  if (pwmlb > 0)
+  {
+    digitalWrite(GPIO_MLB,LOW);
+    analogWrite(PWM_MLB,pwmlb);
+  }
+  else if (pwmlb < 0)
+  {
+   digitalWrite(GPIO_MLB,HIGH);
+    analogWrite(PWM_MLB,pwmlb+1023);
+  }
+  else if (pwmlb == 0)
+  {
+    //digitalWrite(mlb,HIGH);
+    analogWrite(PWM_MLB,0);
+  }
+  //*********************Right's MOTOR MAIN
+  if (pwmrf > 0)
+  {
+   digitalWrite(GPIO_MRF,LOW);
+    analogWrite(PWM_MRF,pwmrf);
+  }
+  else if (pwmrf < 0)
+  {
+   digitalWrite(GPIO_MRF,HIGH);
+    analogWrite(PWM_MRF,pwmrf+1023);
+  }
+  else if (pwmrf == 0)
+  {
+   //digitalWrite(mrf,HIGH);
+    analogWrite(PWM_MRF,0);
+  }
+  //*********************Right's MOTOR MAIN
+  if (pwmrb > 0)
+  {digitalWrite(GPIO_MRB,LOW);
+    analogWrite(PWM_MRB,pwmrb);
+  }
+  else if (pwmrb < 0)
+  {
+    digitalWrite(GPIO_MRB,HIGH);
+    analogWrite(PWM_MRB,pwmrb+1023);
+
+  }
+  else if (pwmrb == 0)
+  {
+    //digitalWrite(mrb,HIGH);
+    analogWrite(PWM_MRB,0);
+  }
+}
 //
 //
 ////5//////COMPASS////

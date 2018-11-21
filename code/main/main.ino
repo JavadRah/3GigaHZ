@@ -22,7 +22,7 @@ int Sensor;
 unsigned int distance = 700 , noise = 358;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2];
-
+float reduction =0.5;
 int Sofa,Sofb,Sola,Solb,Sora,Sorb,Sobb,Soba,fa,fb,la,lb,ra,rb,bb,ba;
 char cmp[3],bigsensor[3],bigsensornum[2];
 ////
@@ -32,8 +32,8 @@ char cmp[3],bigsensor[3],bigsensornum[2];
   int SDA1=18,SCLl=19,GPIO_MRF=24,GPIO_MLF=25,GPIO_MRB=26,GPIO_MLB=27,BUZ=28;
  int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31,FEEDBACK=21,SCENSE1=14,SCENSE2=15,BALL=39,D4=3,D3=4,D2=5,D1=6;
 int AD3=30,AD2=29,AD0=9,AD1=12,SENSOR[17];
-//int mlf,mrb,mlb,mrf;
-//int srfL=121,srfB=122,srfR=123;
+int mlf,mrb,mlb,mrf;
+int srfL=121,srfB=122,srfR=123;
 //******************************************************//
 //......................FUNC.............................//
 
@@ -139,6 +139,7 @@ digitalWrite(BUZ,LOW);
   delay(200);
 digitalWrite(BUZ,LOW);
  delay(200);
+analogWriteFrequency(6,29296);
 }
 
 void loop()
@@ -156,10 +157,9 @@ void loop()
 //set_bits();  
 //refreshs();
 //convert_adc(0);
-analogWrite(PWM_MLB,255);
-digitalWrite(GPIO_MLB,LOW);
-analogWrite(PWM_MLF,1023);
-digitalWrite(GPIO_MLF,HIGH);
+MOTOR(-1023,1023,-255,1023);
+//analogWrite(PWM_MLB,255);
+//digitalWrite(GPIO_MLB,HIGH);
 
 //Serial.println(big_sensor_num);
 /*
