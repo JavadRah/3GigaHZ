@@ -1,20 +1,37 @@
-////////////////////////////////////////////////////////////////////////////////
-
 ////1////////////////////////////////////////////////
-unsigned int read_adc(int c) 
-{
-  int o = analogRead(c);
-//  float p = (1023 * o) / 5;
-  return o;
-}
+//unsigned int read_adc(int c) 
+//{
+//  int o = analogRead(c);
+////  float p = (1023 * o) / 5;
+//  return o;
+//}
 unsigned int  convert_adc(int Sensor) {
-
+  int a=0;
   AD3 = (((Sensor) / 1) % 2);
   AD2 = (((Sensor) / 2) % 2);
   AD1 = (((Sensor) / 4) % 2);
   AD0 = (((Sensor) / 8));
-  return read_adc(14);
+  a= 1023 - analogRead(39);
+    return a;
 }
+void refreshs(void)
+{
+  int k;
+  for (k = 0; k < 16; k++)
+  {
+    SENSOR[k] = 1023- analogRead(39);
+
+    if (SENSOR[k] > 1000) SENSOR[k] = 0;
+  }
+//  for(int i=0;i<16;i++){
+//    Serial.print(" Sensor ");
+//    Serial.println(i);
+//    Serial.println(SENSOR[i]);
+//    delay(100);
+    
+  }
+
+
 void Kaf_setup (void)
  {
 //    refreshs ();
@@ -55,7 +72,7 @@ void set_bits(void)
   kaf_L[1] =  analogRead(21);
 int fa,fb;
   //////////////////out of bound 1
- F_noise[0]= kaf_F[0] -20;
+ F_noise[0]= kaf_F[0] -25;
  F_noise [1]= kaf_F[1] - 45;
 //    L_noise [0]= kaf_L[0] - 20;
 //    L_noise [1]= kaf_L[1] - 25;
@@ -68,7 +85,6 @@ int fa,fb;
 
   if ( F_noise[0]>=0)  fa = 1;
   else   fa = 0;
-  Serial.println(fa);
   if ( L_noise[0]>=0)  la = 1;
   else   la = 0;
 
@@ -81,6 +97,7 @@ int fa,fb;
 
   if (F_noise[1]>=0)  fb = 1;
   else   fb = 0;
+  Serial.println(fb);
 
   if ( L_noise[1]>=0)  lb = 1;
   else  lb = 0;
@@ -88,22 +105,28 @@ int fa,fb;
   if ( B_noise[1]>=0)  bb = 1;
   else   bb = 0;
 }
-
-void refreshs(void)
-{
-  int k;
-  for (k = 0; k < 16; k++)
-  {
-    SENSOR[k] = 1023 - analogRead(k);
-    if (SENSOR[k] > 1000) SENSOR[k] = 0;
-  }
-}
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 //void get_battery_voltage()
 //{
 //  battery_voltage = (FEEDBACK * 12.7) / 524;
 //}
 ////20////////////////////BIG SENSOR/////////////////////////////////
+     void biggestt(void)
+    {
+      int b=17,c=0;
+      for(int i=0;i<16;i++) 
+     {
+      a[i]=convert_adc(i);
+      if(c<a[i])
+      {
+      c=a[i];
+      b=i;}
+     }
+      big_sensor = c;
+      big_sensor_num = b;
+      delay(500);
+    }
+/*
 void biggest(void)
 {
   int i, c;
@@ -119,7 +142,7 @@ void biggest(void)
   big_sensor = MAX;
   big_sensor_num = c;
 }
-
+*/
 ///////////////////////SHOW Kaf/////////////////////////////////////
 void SHOWKAF(void)
 {
