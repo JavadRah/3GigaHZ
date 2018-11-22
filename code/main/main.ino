@@ -1,7 +1,7 @@
 /////////////////////////////StarT//////////////////////////////
-#include<Wire.h>
-#define address 0x60
-//--------------------------VAR-------------------------//
+#include <Wire.h>
+#define address 0x60 
+//-------------------------- VAR -------------------------//
 //int Compass;
 float reduction = 0.4;
 unsigned int n_cmp, big_sensor, big_sensor_num;
