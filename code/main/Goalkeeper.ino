@@ -41,56 +41,56 @@
 //
 //}
 //
-////19/////////////////////////srf///////////////////////////////////
-//void ultrasonic()
-//{
-//  Wire.beginTransmission(112);
-//  Wire.write(byte(0x00));
-//  Wire.write(byte(0x51));
-//  Wire.endTransmission();
-//  Wire.beginTransmission(113);
-//  Wire.write(byte(0x00));
-//  Wire.write(byte(0x51));
-//  Wire.endTransmission();
-//  Wire.beginTransmission(114);
-//  Wire.write(byte(0x00));
-//  Wire.write(byte(0x51));
-//  Wire.endTransmission();
-//
-//  // ////////////////////////////////////////////////////////////////////////////////
-//  Wire.beginTransmission(112);
-//  Wire.write(byte(0x02));
-//  Wire.endTransmission();
-//  Wire.requestFrom(112, 2);
-//  if (2 <= Wire.available())
-//  {
-//    reader[3] = Wire.read();
-//    reader[3] = reader[3] << 8;
-//    reader[3] |= Wire.read();
-//  }
-//  Wire.beginTransmission(113);
-//  Wire.write(byte(0x02));
-//  Wire.endTransmission();
-//  Wire.requestFrom(113, 2);
-//  if (2 <= Wire.available())
-//  {
-//    reader[1] = Wire.read();
-//    reader[1] = reader[1] << 8;
-//    reader[1] |= Wire.read();
-//  }
-//  Wire.beginTransmission(114);
-//  Wire.write(byte(0x02));
-//  Wire.endTransmission();
-//  Wire.requestFrom(114, 2);
-//  if (2 <= Wire.available())
-//  {
-//    reader[2] = Wire.read();
-//    reader[2] = reader [2] << 8;
-//    reader[2] |= Wire.read();
-//  }
-//
-//}
-//
+//19/////////////////////////srf///////////////////////////////////
+void ultrasonic()
+{
+  Wire.beginTransmission(112);
+  Wire.write(byte(0x00));
+  Wire.write(byte(0x51));
+  Wire.endTransmission();
+  Wire.beginTransmission(113);
+  Wire.write(byte(0x00));
+  Wire.write(byte(0x51));
+  Wire.endTransmission();
+  Wire.beginTransmission(114);
+  Wire.write(byte(0x00));
+  Wire.write(byte(0x51));
+  Wire.endTransmission();
+
+  // ////////////////////////////////////////////////////////////////////////////////
+  Wire.beginTransmission(112);
+  Wire.write(byte(0x02));
+  Wire.endTransmission();
+  Wire.requestFrom(112, 2);
+  if (2 <= Wire.available())
+  {
+    reader[3] = Wire.read();
+    reader[3] = reader[3] << 8;
+    reader[3] |= Wire.read();
+  }
+  Wire.beginTransmission(113);
+  Wire.write(byte(0x02));
+  Wire.endTransmission();
+  Wire.requestFrom(113, 2);
+  if (2 <= Wire.available())
+  {
+    reader[1] = Wire.read();
+    reader[1] = reader[1] << 8;
+    reader[1] |= Wire.read();
+  }
+  Wire.beginTransmission(114);
+  Wire.write(byte(0x02));
+  Wire.endTransmission();
+  Wire.requestFrom(114, 2);
+  if (2 <= Wire.available())
+  {
+    reader[2] = Wire.read();
+    reader[2] = reader [2] << 8;
+    reader[2] |= Wire.read();
+  }
+
+}
+
 ////12//////////////////////MOVE WIDTH//////////////////////////////
 //void MoveWidth (void)
 //{

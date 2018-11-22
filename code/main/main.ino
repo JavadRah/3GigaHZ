@@ -147,13 +147,23 @@ void setup()
 
 void loop()
 {
+  //////harekate vazie mah//////
+  /*
   for(int i = 0;i< 16; i++)
   {
     Serial.print(i);
     Serial.print(" : ");
     Move(i);
     delay(100);
-  }
+  }*/
+ ultrasonic();
+  Serial.print ("(");
+  sprintf (srfr, "%03d", reader[2]);
+  Serial.print(srfr );
+  sprintf (srfb, "%03d", reader[1]);
+  Serial.print( srfb);
+  sprintf (srfl, "%03d", reader[3]);
+  Serial.print(srfl);
 
   /*sprintf (cmp,"%03d", Compass);
     Serial.println(cmp);
