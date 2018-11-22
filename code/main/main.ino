@@ -1,7 +1,7 @@
 /////////////////////////////StarT//////////////////////////////
-#include<Wire.h>
+#include <Wire.h>
 #define address 0x60 
-//--------------------------VAR-------------------------//
+//-------------------------- VAR -------------------------//
 //int Compass;
 float reduction =1;
 unsigned int n_cmp, big_sensor, big_sensor_num;
@@ -146,11 +146,7 @@ analogWriteFrequency(6,29296);
 
 void loop()
 {
-MOTOR(512,0,0,0) ; 
-//for(int i=0;i<16;i++){
-//  Move(i);
-//  delay(100);
-//}
+
  /*sprintf (cmp,"%03d", Compass);
  Serial.println(cmp);
  delay(100);*/
