@@ -1,13 +1,13 @@
 /////////////////////////////StarT//////////////////////////////
 #include<Wire.h>
-#define address 0x60 
+#define address 0x60
 //--------------------------VAR-------------------------//
 //int Compass;
-float reduction =1;
+float reduction = 0.4;
 unsigned int n_cmp, big_sensor, big_sensor_num;
 ////EEPROM write
 unsigned char SETUP;
-signed int set_m=0, set_s=0;
+signed int set_m = 0, set_s = 0;
 char Movement;
 int reader[4];
 char srfl[3];
@@ -22,48 +22,48 @@ int Sensor;
 unsigned int distance = 700 , noise = 50;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2];
-int Sofa,Sofb,Sola,Solb,Sora,Sorb,Sobb,Soba,fa,fb,la,lb,ra,rb,bb,ba;
-char cmp[3],bigsensor[3],bigsensornum[2];
+int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba, fa, fb, la, lb, ra, rb, bb, ba;
+char cmp[3], bigsensor[3], bigsensornum[2];
 // const int led = 13;
 int a[16];
 ////
 //eeprom
 //**************************PINS*************************//
- int RX=0,TX=1,SET=2,RX1=7,TX1=8,PWM_MRF=22,PWM_MLF=21,PWM_MRB=20,PWM_MLB=10,SHOOT=11;
-  int SDA1=18,SCLl=19,GPIO_MRF=24,GPIO_MLF=25,GPIO_MRB=26,GPIO_MLB=27,BUZ=28;
- int SOFA=34,SOFB=33,SORA=37,SORB=38,SOLA=35,SOLB=36,SOBA=32,SOBB=31,FEEDBACK=21,SCENSE1=14,SCENSE2=15,BALL=39,D4=3,D3=4,D2=5,D1=6;
-int AD3=30,AD2=29,AD0=9,AD1=12,SENSOR[17];
-int mlf,mrb,mlb,mrf;
-int srfL=121,srfB=122,srfR=123;
+int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
+int SDA1 = 18, SCLl = 19, GPIO_MRF = 24, GPIO_MLF = 25, GPIO_MRB = 26, GPIO_MLB = 27, BUZ = 28;
+int SOFA = 34, SOFB = 33, SORA = 37, SORB = 38, SOLA = 35, SOLB = 36, SOBA = 32, SOBB = 31, FEEDBACK = 21, SCENSE1 = 14, SCENSE2 = 15, BALL = 39, D4 = 3, D3 = 4, D2 = 5, D1 = 6;
+int AD3 = 30, AD2 = 29, AD0 = 9, AD1 = 12, SENSOR[17];
+int mlf, mrb, mlb, mrf;
+int srfL = 121, srfB = 122, srfR = 123;
 //******************************************************//
 //......................FUNC.............................//
 
 //15///////////////////////WIN///////////////////////
 void win(void)
 {
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(200);
-  digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(150);
 
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(200);
-  digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(150);
 
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(100);
- digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(100);
 
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(100);
-  digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(150);
 
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(200);
-digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(200);
 }
 //16//////////////////////CHECK EN////////////////////////////////
@@ -103,87 +103,91 @@ void setup()
   pinMode(GPIO_MRB, OUTPUT);
   pinMode(GPIO_MLB, OUTPUT);
   pinMode(BALL, INPUT);
-  pinMode(SOFA,INPUT);
-//  pinMode(SOBB, INPUT);
-//  pinMode(SOBA, INPUT);
-//  pinMode(SORA, INPUT);
-//  pinMode(SORB, INPUT);
- pinMode(SOFB,INPUT);
-//  pinMode(SOLA, INPUT);
-//  pinMode(SOLB, INPUT);
+  pinMode(SOFA, INPUT);
+  //  pinMode(SOBB, INPUT);
+  //  pinMode(SOBA, INPUT);
+  //  pinMode(SORA, INPUT);
+  //  pinMode(SORB, INPUT);
+  pinMode(SOFB, INPUT);
+  //  pinMode(SOLA, INPUT);
+  //  pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
-//  pinMode(SET, INPUT_PULLUP);
-//  pinMode(D1,INPUT);
-//  pinMode(D2,INPUT);
-//  pinMode(D3,INPUT);
-//  pinMode(D4,INPUT);
-//  pinMode(led,OUTPUT);
-//  //pinMode(,);
+  //  pinMode(SET, INPUT_PULLUP);
+  //  pinMode(D1,INPUT);
+  //  pinMode(D2,INPUT);
+  //  pinMode(D3,INPUT);
+  //  pinMode(D4,INPUT);
+  //  pinMode(led,OUTPUT);
+  //  //pinMode(,);
   //=============================================//
   Serial.begin(38400);
-// Serial.begin(9600);
-//  set_m = spin_speed(1, 15, 3);
-//  set_s = spin_speed(1, 15, 7);
-digitalWrite(BUZ,HIGH);
+  // Serial.begin(9600);
+  //  set_m = spin_speed(1, 15, 3);
+  //  set_s = spin_speed(1, 15, 7);
+  digitalWrite(BUZ, HIGH);
   delay(100);
-digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(10);
-digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(105);
-digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(300);
-  digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(200);
-digitalWrite(BUZ,LOW);
- delay(100);
-//  digitalWrite(BUZ,HIGH);
-//  delay(300);
-//digitalWrite(BUZ,LOW);
-// delay(300);
-//win();
-analogWriteFrequency(6,29296);
+  digitalWrite(BUZ, LOW);
+  delay(100);
+  //  digitalWrite(BUZ,HIGH);
+  //  delay(300);
+
+  //digitalWrite(BUZ,LOW);
+  // delay(300);
+  //win();
+  analogWriteFrequency(20, 29296);
 }
 
 void loop()
 {
-MOTOR(512,0,0,0) ; 
-//for(int i=0;i<16;i++){
-//  Move(i);
-//  delay(100);
-//}
- /*sprintf (cmp,"%03d", Compass);
- Serial.println(cmp);
- delay(100);*/
-//SHOWKAF();
-//set_bits();  
-//refreshs();
-//convert_adc(0);
+  for(int i = 0;i< 16; i++)
+  {
+    Serial.print(i);
+    Serial.print(" : ");
+    Move(i);
+    delay(100);
+  }
 
-//   if(SET==HIGH)
-//    {
-//        while(SET==HIGH)
-//        {
-//            Read_Compass();
-//            refreshs();
-//           pinMode(BUZ,HIGH);
-//           delay(100);
-//        }
-//        pinMode(BUZ,LOW);
-//        SETUP = n_cmp;
-//        Kaf_setup();
-//    }
-//    if(D1==HIGH)
-//    {
-//      while(D1==HIGH)
-//      {
-//        SHOWKAF();
-//      }
-//    }
-//   if(D2==HIGH)
-//    {
-//      while(D2==HIGH)
-//      {
-//        SHOWSENSOR();
-//      }
-//    }*/
+  /*sprintf (cmp,"%03d", Compass);
+    Serial.println(cmp);
+    delay(100);*/
+  //SHOWKAF();
+  //set_bits();
+  //refreshs();
+  //convert_adc(0);
+
+  //   if(SET==HIGH)
+  //    {
+  //        while(SET==HIGH)
+  //        {
+  //            Read_Compass();
+  //            refreshs();
+  //           pinMode(BUZ,HIGH);
+  //           delay(100);
+  //        }
+  //        pinMode(BUZ,LOW);
+  //        SETUP = n_cmp;
+  //        Kaf_setup();
+  //    }
+  //    if(D1==HIGH)
+  //    {
+  //      while(D1==HIGH)
+  //      {
+  //        SHOWKAF();
+  //      }
+  //    }
+  //   if(D2==HIGH)
+  //    {
+  //      while(D2==HIGH)
+  //      {
+  //        SHOWSENSOR();
+  //      }
+  //    }*/
 }
