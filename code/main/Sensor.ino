@@ -23,13 +23,13 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-//  for(int i=0;i<16;i++){
-//    Serial.print(" Sensor ");
-//    Serial.println(i);
-//    Serial.println(SENSOR[i]);
-//    delay(100);
+  for(int i=0;i<16;i++){
+    Serial.print(" Sensor ");
+    Serial.println(i);
+    Serial.println(SENSOR[i]);
+    delay(200);
     
-  }
+  }  }
 
 
 void Kaf_setup (void)
@@ -127,10 +127,10 @@ int fa,fb;
      }
       big_sensor = c;
       big_sensor_num = b;
-      Serial.print(b);
-      Serial.print(" | ");
-      Serial.println(c);
-      delay(5);
+//      Serial.print(b);
+//      Serial.print(" | ");
+//      Serial.println(c);
+//      delay(5);
     }
 /*
 void biggest(void)

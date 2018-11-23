@@ -82,8 +82,8 @@ void MOTOR(int pwmlf, int pwmlb, int pwmrf, int pwmrb)
     digitalWrite(GPIO_MRB, HIGH);
     analogWrite(PWM_MRB, 1023);
   }
-  sprintf(buf, "%d,%d,%d,%d ", pwmlf, pwmlb, pwmrf, pwmrb);
-  Serial.println(buf);
+//  sprintf(buf, "%d,%d,%d,%d ", pwmlf, pwmlb, pwmrf, pwmrb);
+//  Serial.println(buf);
 }
 ////8////MOVEMENT//////////////////////////////
 ////int set_m=0;
@@ -342,8 +342,8 @@ void follow(void)
 //-}
 
 ////11///////////////////////STOP///////////////////////////////////
-//void STOP(void)
-//{
-//  reduction = 1;
-//  MOTOR(set_s, set_s, set_s, set_s);
-//}
+void STOP(void)
+{
+  reduction = 1;
+  MOTOR(set_s, set_s, set_s, set_s);
+}

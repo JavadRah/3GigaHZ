@@ -90,6 +90,19 @@ void ultrasonic()
   }
 
 }
+void SHOWSRF()
+{
+    sprintf (srfr, "%03d", reader[2]);
+    Serial.print("srfr=");
+    Serial.println(srfr );
+//  sprintf (srfb, "%03d", reader[1]);
+//  Serial.print("srfb=");
+//  Serial.print( srfb);
+//  sprintf (srfl, "%03d", reader[3]);
+//  Serial.print("srfl=");
+//  Serial.print(srfl);
+
+}
 
 ////12//////////////////////MOVE WIDTH//////////////////////////////
 //void MoveWidth (void)
