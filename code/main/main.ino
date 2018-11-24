@@ -2,7 +2,7 @@
 #include <Wire.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-float reduction = 1;
+float reduction = 0.5;
 unsigned int n_cmp, big_sensor, big_sensor_num=17;
 ////EEPROM write
 int nSETUP;
@@ -137,14 +137,18 @@ void setup()
   delay(100);
 
   analogWriteFrequency(20, 29296);
-  //Calibrate ();
+//delay(5000);
+// Calibrate ();
 
 }
 
 void loop()
 {
- // refreshs();
- // biggestt();
+refreshs();
+
+// digitalWrite(BUZ,HIGH);
+  //delay(100);
+ // refreshs();  biggest();
 //  SHOWSENSOR();
   //////harekate vazie mah//////
   /*
@@ -156,31 +160,31 @@ void loop()
     delay(100);
     }*/
   ////////////////////////////
-  STOP();
-  set_s = spin_speed(1, 40, 10);
-
-
-  Read_Compass();
-  CMPS();
-  Serial.print(nSETUP);
-  Serial.print(" | ");
-  Serial.println(CMPS()); //Compass
-  delay(10);
-  if (digitalRead(SET) == LOW)
-  {
-    while (digitalRead(SET) == LOW)
-    {
-      Read_Compass();
-      digitalWrite(BUZ, HIGH);
-      delay(100);
-        Serial.println(n_cmp);
-    }
-    nSETUP = n_cmp;
-    digitalWrite(BUZ, LOW);
-    Kaf_setup();
+//  STOP();
+//  set_s = spin_speed(1, 40, 10);
+//
+//
+//  Read_Compass();
+//  CMPS();
+//  Serial.print(nSETUP);
+//  Serial.print(" | ");
+//  Serial.println(CMPS()); //Compass
+//  delay(10);
+//  if (digitalRead(SET) == LOW)
+//  {
+//    while (digitalRead(SET) == LOW)
+//    {
+//      Read_Compass();
+//      digitalWrite(BUZ, HIGH);
+//      delay(100);
+//        Serial.println(n_cmp);
+//    }
+//    nSETUP = n_cmp;
+//    digitalWrite(BUZ, LOW);
+//    Kaf_setup();
     
-      delay(100);
-    }
+//      delay(100);
+//    }
   //      if(digitalRead(D1)==HIGH)
   //      {
   //        while(digitalRead(D1)==HIGH)

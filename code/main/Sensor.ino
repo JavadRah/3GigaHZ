@@ -7,10 +7,10 @@
 //}
 unsigned int  convert_adc(int Sensor) {
   int a=0;
-  AD3 = (((Sensor) / 1) % 2);
-  AD2 = (((Sensor) / 2) % 2);
-  AD1 = (((Sensor) / 4) % 2);
-  AD0 = (((Sensor) / 8));
+  digitalWrite(AD0,(((Sensor) / 1) % 2));  
+  digitalWrite(AD1,(((Sensor) / 2) % 2));
+  digitalWrite(AD2,(((Sensor) / 4) % 2));
+  digitalWrite(AD3,(((Sensor) / 8)));
   a= 1023 - analogRead(39);
     return a;
 }
@@ -19,17 +19,26 @@ void refreshs(void)
   int k;
   for (k = 0; k < 16; k++)
   {
-    SENSOR[k] = 1023- analogRead(39);
+    SENSOR[k] = convert_adc(k);
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
+//    if (k==14){
+//      SENSOR[0]=1023- analogRead(39);
+//      SENSOR[k]=SENSOR[0];
+//    }
+//     if (k==15){
+//      SENSOR[1]=1023- analogRead(39);
+//      SENSOR[k]=SENSOR[1];
+//    }
   }
   for(int i=0;i<16;i++){
     Serial.print(" Sensor ");
     Serial.println(i);
     Serial.println(SENSOR[i]);
-    delay(200);
+    delay(1000);
     
-  }  }
+  } 
+  }
 
 
 void Kaf_setup (void)
@@ -114,7 +123,8 @@ int fa,fb;
 //}
 ////20////////////////////BIG SENSOR/////////////////////////////////
      void biggestt(void)
-    {
+    { 
+      refreshs();
       int b=17,c=0;
       for(int i=0;i<16;i++) 
      {
@@ -127,28 +137,32 @@ int fa,fb;
      }
       big_sensor = c;
       big_sensor_num = b;
-//      Serial.print(b);
+      Serial.print(b);
+      Serial.print(" | ");
+      Serial.println(c);
+      delay(500);
+    }
+
+//void biggest(void)
+//{ refreshs();
+//  int i, c;
+//  int MAX = 0;
+//  for (i = 0; i < 16; i++)
+//  {
+//    if (MAX < SENSOR[i+2])
+//    {
+//      c = i;
+//      MAX = SENSOR[i];
+//    }
+//  }
+//  big_sensor = MAX;
+//  big_sensor_num = c;
+//   Serial.print(c);
 //      Serial.print(" | ");
-//      Serial.println(c);
-//      delay(5);
-    }
-/*
-void biggest(void)
-{
-  int i, c;
-  int MAX = 0;
-  for (i = 0; i < 16; i++)
-  {
-    if (MAX < SENSOR[i])
-    {
-      c = i;
-      MAX = SENSOR[i];
-    }
-  }
-  big_sensor = MAX;
-  big_sensor_num = c;
-}
-*/
+//      Serial.println(MAX);
+//      delay(500);
+//}
+
 ///////////////////////SHOW Kaf/////////////////////////////////////
 void SHOWKAF(void)
 {
@@ -181,6 +195,13 @@ void SHOWKAF(void)
 
  void SHOWSENSOR(void)
  {
+  refreshs();
+  biggestt();
+    for(int i=0;i<16;i++){
+    Serial.print(" Sensor ");
+    Serial.println(i);
+    Serial.println(SENSOR[i]);
+    delay(200);  }
     sprintf (bigsensornum,"%03d", big_sensor_num);
     Serial.print("big sensor number=");
     Serial.println(bigsensornum);

@@ -2,7 +2,23 @@
 void Calibrate ()
 {
   for(int k=0; k<4; k++)
-  {
+  { if(k==0){
+    STOP();
+    delay(110);
+     Wire.beginTransmission(address); 
+  digitalWrite(BUZ,HIGH);
+  delay(100);
+  Wire.write(15);
+  Wire.write(0xff);
+  Wire.endTransmission();
+  digitalWrite(BUZ,LOW);
+  continue;
+  }
+    STOP();
+    delay(100);
+    MOTOR(1023,1023,1023,1023);
+    delay(110);
+    STOP();
   Wire.beginTransmission(address); 
   digitalWrite(BUZ,HIGH);
   delay(100);
