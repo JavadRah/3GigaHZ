@@ -2,8 +2,8 @@
 #include <Wire.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-float reduction = 0.5;
-unsigned int n_cmp, big_sensor, big_sensor_num=17;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17;
+float reduction;
 ////EEPROM write
 int nSETUP;
 signed int set_m = 0, set_s = 0, Compass;
@@ -18,9 +18,9 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor;
-unsigned int distance = 700 , noise = 50;
+unsigned int distance = 70 , noise = 50;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
-int F_noise[2], R_noise[2], L_noise[2], B_noise[2],SENSOR[17];
+int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba, fa, fb, la, lb, ra, rb, bb, ba;
 char cmp[3], bigsensor[3], bigsensornum[2];
 // const int led = 13;
@@ -121,8 +121,6 @@ void setup()
   Serial.begin(38400);
   Wire.begin();
   // Serial.begin(9600);
-  //  set_m = spin_speed(1, 15, 3);
-  //  set_s = spin_speed(1, 15, 7);
   digitalWrite(BUZ, HIGH);
   delay(100);
   digitalWrite(BUZ, LOW);
@@ -137,20 +135,28 @@ void setup()
   delay(100);
 
   analogWriteFrequency(20, 29296);
-//delay(5000);
-// Calibrate ();
+  //delay(5000);
+  //Calibrate();
 
 }
 
 void loop()
 {
-//refreshs();
+  reduction = 0.5;
+ // refreshs();
+  //  refreshs();
+  biggestt();
+//SHOWSENSOR();
+  //SHOWKAF();
+  if (big_sensor > noise)
+    follow();
+  else
+    STOP();
 
-// digitalWrite(BUZ,HIGH);
-  //delay(100);
- // refreshs();  biggest();
-//  SHOWSENSOR();
-SHOWKAF();
+
+  set_m = spin_speed(1, 40, 10);
+  set_s = spin_speed(1, 40, 10);
+
   //////harekate vazie mah//////
   /*
     for(int i = 0;i< 16; i++)
@@ -161,31 +167,26 @@ SHOWKAF();
     delay(100);
     }*/
   ////////////////////////////
-//  STOP();
-//  set_s = spin_speed(1, 40, 10);
-//
-//
-//  Read_Compass();
-//  CMPS();
-//  Serial.print(nSETUP);
-//  Serial.print(" | ");
-//  Serial.println(CMPS()); //Compass
-//  delay(10);
-//  if (digitalRead(SET) == LOW)
-//  {
-//    while (digitalRead(SET) == LOW)
-//    {
-//      Read_Compass();
-//      digitalWrite(BUZ, HIGH);
-//      delay(100);
-//        Serial.println(n_cmp);
-//    }
-//    nSETUP = n_cmp;
-//    digitalWrite(BUZ, LOW);
-//    Kaf_setup();
-    
-//      delay(100);
-//    }
+  Read_Compass();
+  //  CMPS();
+  //  Serial.print(nSETUP);
+  //  Serial.print(" | ");
+  //  Serial.println(CMPS()); //Compass
+  //  delay(10);
+  if (digitalRead(SET) == LOW)
+  {
+    while (digitalRead(SET) == LOW)
+    {
+      Read_Compass();
+      digitalWrite(BUZ, HIGH);
+      delay(100);
+      Serial.println(n_cmp);
+    }
+    nSETUP = n_cmp;
+    digitalWrite(BUZ, LOW);
+    Kaf_setup();
+    delay(100);
+  }
   //      if(digitalRead(D1)==HIGH)
   //      {
   //        while(digitalRead(D1)==HIGH)
@@ -199,6 +200,6 @@ SHOWKAF();
   //        {
   //          SHOWSENSOR();
   //        }
-  
+
   //      }
 }

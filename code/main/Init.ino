@@ -1,5 +1,5 @@
 ////4//////Calibrate///
-void Calibrate ()
+void Calibrate (void)
 {
   for(int k=0; k<4; k++)
   { if(k==0){
