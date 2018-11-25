@@ -144,12 +144,13 @@ void setup()
 
 void loop()
 {
-refreshs();
+//refreshs();
 
 // digitalWrite(BUZ,HIGH);
   //delay(100);
  // refreshs();  biggest();
 //  SHOWSENSOR();
+SHOWKAF();
   //////harekate vazie mah//////
   /*
     for(int i = 0;i< 16; i++)
@@ -198,5 +199,6 @@ refreshs();
   //        {
   //          SHOWSENSOR();
   //        }
+  
   //      }
 }
