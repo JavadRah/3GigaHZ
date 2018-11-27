@@ -70,13 +70,13 @@ void set_bits(void)
   //////////////////out of bound 1
   F_noise[0] = kaf_F[0] - 25;
   F_noise [1] = kaf_F[1] - 45;
-  L_noise [0] = kaf_L[0] - 30;
-  L_noise [1] = kaf_L[1] - 30;
+  L_noise [0] = kaf_L[0] - 210;
+  L_noise [1] = kaf_L[1] - 240;
   //////////////check nashode/////////////
-  R_noise [0] = kaf_R[0] - 40;
-  R_noise [1] = kaf_R[1] - 5; //??????
-  B_noise [0] = kaf_B[0] - 30;
-  B_noise [1] = kaf_B[1] - 30;
+  R_noise [0] = kaf_R[0] - 115;
+  R_noise [1] = kaf_R[1] - 125; 
+  B_noise [0] = kaf_B[0] - 210 ;
+  B_noise [1] = kaf_B[1] - 140;
   ////////////////////////////////////
   if (R_noise[0] >= 0)  ra = 1;
   else   ra = 0;
@@ -137,27 +137,27 @@ void SHOWKAF(void)
   //     Serial.print("KAF FA:");
   //     Serial.println(kaf_F[0]);
   //     delay(200);
-  //     Serial.print("KAF RA:");
-  //     Serial.println(kaf_R[0]);
-  //     delay(200);
-  Serial.print("KAF BA:");
-  Serial.println(kaf_B[0]);
-  delay(200);
-  //     Serial.print("KAF LA:");
-  //     Serial.println(kaf_L[0]);
-  //     delay(400);
+       Serial.print("KAF RA:");
+       Serial.println(kaf_R[0]);
+       delay(200);
+//  Serial.print("KAF BA:");
+//  Serial.println(kaf_B[0]);
+//  delay(200);
+//       Serial.print("KAF LA:");
+//       Serial.println(kaf_L[0]);
+//       delay(400);
   //     Serial.print("KAF FB:");
   //     Serial.println(kaf_F[1]);
   //     delay(400);
-  //     Serial.print("KAF RB:");
-  //     Serial.println(kaf_R[1]);
-  //     delay(200);
-  Serial.print("KAF BB:");
-  Serial.println(kaf_B[1]);
-  delay(200);
-  //     Serial.print("KAF LB:");
-  //     Serial.println(kaf_L[1]);
-  //     delay(200);
+       Serial.print("KAF RB:");
+       Serial.println(kaf_R[1]);
+       delay(200);
+//  Serial.print("KAF BB:");
+//  Serial.println(kaf_B[1]);
+//  delay(200);
+//       Serial.print("KAF LB:");
+//       Serial.println(kaf_L[1]);
+//       delay(200);
 }
 
 void SHOWSENSOR(void)
@@ -193,5 +193,3 @@ void SHOWCMP()
     Serial.println(CMPS()); //Compass
     delay(10);
 }
-
-

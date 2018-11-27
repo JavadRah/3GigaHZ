@@ -107,11 +107,11 @@ void setup()
   pinMode(SOFA, INPUT);
     pinMode(SOBB, INPUT);
     pinMode(SOBA, INPUT);
-  //  pinMode(SORA, INPUT);
-  //  pinMode(SORB, INPUT);
+    pinMode(SORA, INPUT);
+    pinMode(SORB, INPUT);
   pinMode(SOFB, INPUT);
-  //  pinMode(SOLA, INPUT);
-  //  pinMode(SOLB, INPUT);
+    pinMode(SOLA, INPUT);
+    pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
   pinMode(SET, INPUT_PULLUP);
   //  pinMode(D1,INPUT);
@@ -147,15 +147,15 @@ void loop()
 
   reduction = 0.5;
   // refreshs();
-  //SHOWKAF();
+  SHOWKAF();
 //  biggestt();
-////SHOWSENSOR();
+//SHOWSENSOR();
 //  ultrasonic ();
 //  SHOWSRF();
 //  delay(100);
 //
 //  if (big_sensor > noise)   
-  Move_Width();
+//  Move_Width();
 //  else
 //  BackToGoal   (); 
 
