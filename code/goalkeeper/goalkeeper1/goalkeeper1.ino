@@ -15,7 +15,7 @@ void BackToGoal(void)
     Move(0);
 
   }
-  else if (srfL < 55 && srfR > 60)
+  else if (srfL < 55 /*&& srfR > 60*/)
   {
     //if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
    // else
@@ -27,7 +27,7 @@ void BackToGoal(void)
     //else
     Move(12);
   }
-  else if (srfB > 45)
+  else if (srfB > 40)
   {
     Move(8);
    // boogh();
@@ -141,14 +141,14 @@ void Move_Width (void)
 {
   ultrasonic();
   biggestt();
-  if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR>55)
+  if (big_sensor_num >= 0 && big_sensor_num <= 4 &&srfR > 55)
   {
     reduction = 0.5;
     Move(4);
 
     
   }
-  else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 60)
+  else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 55)
   {
     reduction = 0.5;
     Move(12);
@@ -158,4 +158,12 @@ void Move_Width (void)
   {
     BackToGoal();
   }
+}void setup() {
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
 }
