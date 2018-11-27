@@ -1,33 +1,33 @@
-////10//////////////////////////////////////////////////////////////
+
 ////.......................OUT.................................//
-/////////////////////////////////////////////////////////////////
+////10/////////////////////////////////////////////////////////////
 //
 //void OUT(void)
 //{
-//  if (SORA || SORB)
+//  if (ra || rb)
 //  {
 //    while (big_sensor_num < 8)
 //    {
 //      biggest();
-//      biggest();
+//      //biggest();
 //      set_bits();
-//      set_m = spin_speed(1, 15, 3);
-//      set_s = spin_speed(1, 15, 7);
-//      if (SORA)
+//       set_m = spin_speed(1, 40, 10);
+//       set_s = spin_speed(1, 40, 10);
+//      if (ra)
 //      {
 //        Move(12);
 //      }
-//      else if (SOFA || SOFB)
+//      else if (fa || fb)
 //      {
-//        if (SOFA) Move(9);
-//        else if (SOFB)
+//        if (fa) Move(9);
+//        else if (fb)
 //        {
-//          while (!SOFA)
+//          while (!fa)
 //          {
 //            Move(9);
 //            set_bits();
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//             set_m = spin_speed(1, 40, 10);
+//             set_s = spin_speed(1, 40, 10);
 //            if (srfB < 50)
 //            {
 //              Move(8);
@@ -37,26 +37,26 @@
 //          }
 //        }
 //      }
-//      else if (SOBA || SOBB)
+//      else if (ba || bb)
 //      {
-//        if (SOBA) Move(15);
-//        else if (SOBB)
+//        if (ba) Move(15);
+//        else if (bb)
 //        {
-//          while (!SOBA && srfB < 50)
+//          while (!ba && srfB < 50)
 //          {
 //            Move(15);
 //            set_bits();
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          }
 //        }
 //      }
-//      else if (SORB)
+//      else if (rb)
 //      {
-//        while (!SORA && srfR < 50)
+//        while (!ra && srfR < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(12);
 //          set_bits();
 //        }
@@ -64,21 +64,21 @@
 //      else STOP();
 //    }
 //    ////////////////////////////////////////// Khareje While /////////////////////////////////////////////////
-//    if (SORA)
+//    if (ra)
 //    {
 //      Move(12);
 //    }
-//    else if (SOFA || SOFB)
+//    else if (fa || fb)
 //    {
-//      if (SOFA) Move(9);
-//      else if (SOFB)
+//      if (fa) Move(9);
+//      else if (fb)
 //      {
-//        while (!SOFA)
+//        while (!fa)
 //        {
 //          Move(9);
 //          set_bits();
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          if (srfB < 50)
 //          {
 //            Move(8);
@@ -88,26 +88,26 @@
 //        }
 //      }
 //    }
-//    else if (SOBA || SOBB)
+//    else if (ba || bb)
 //    {
-//      if (SOBA) Move(15);
-//      else if (SOBB)
+//      if (ba) Move(15);
+//      else if (bb)
 //      {
-//        while (!SOBA && srfB < 50)
+//        while (!ba && srfB < 50)
 //        {
 //          Move(15);
 //          set_bits();
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        }
 //      }
 //    }
-//    else if (SORB)
+//    else if (rb)
 //    {
-//      while (!SORA && srfR < 50)
+//      while (!ra && srfR < 50)
 //      {
-//        set_m = spin_speed(1, 15, 3);
-//        set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        Move(12);
 //        set_bits();
 //      }
@@ -115,28 +115,28 @@
 //    else STOP();
 //
 //  }
-//  else if (SOLA || SOLB)
+//  else if (la || lb)
 //  {
 //    while (big_sensor_num > 8)
 //    {
 //      biggest();
 //      biggest();
 //      set_bits();
-//      set_m = spin_speed(1, 15, 3);
-//      set_s = spin_speed(1, 15, 7);
-//      if (SOLA)
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
+//      if (la)
 //      {
 //        Move(4);
 //      }
-//      else if (SOFA || SOFB)
+//      else if (fa || fb)
 //      {
-//        if (SOFA) Move(7);
-//        else if (SOFB)
+//        if (fa) Move(7);
+//        else if (fb)
 //        {
-//          while (!SOFA)
+//          while (!fa)
 //          {
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //            Move(7);
 //            set_bits();
 //            if (srfB < 50)
@@ -148,45 +148,45 @@
 //          }
 //        }
 //      }
-//      else if (SOBA || SOBB)
+//      else if (ba || bb)
 //      {
-//        if (SOBA) Move(1);
-//        else if (SOBB)
+//        if (ba) Move(1);
+//        else if (bb)
 //        {
-//          while (!SOBA && srfB < 50)
+//          while (!ba && srfB < 50)
 //          {
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //            Move(1);
 //            set_bits();
 //          }
 //        }
 //      }
-//      else if (SOLB)
+//      else if (lb)
 //      {
-//        while (!SOLA && srfL < 50)
+//        while (!la && srfL < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(4);
 //          set_bits();
 //        }
 //      }
 //      else STOP();
 //    }
-//    if (SOLA)
+//    if (la)
 //    {
 //      Move(4);
 //    }
-//    else if (SOFA || SOFB)
+//    else if (fa || fb)
 //    {
-//      if (SOFA) Move(7);
-//      else if (SOFB)
+//      if (fa) Move(7);
+//      else if (fb)
 //      {
-//        while (!SOFA)
+//        while (!fa)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(7);
 //          set_bits();
 //          if (srfB < 50)
@@ -198,26 +198,26 @@
 //        }
 //      }
 //    }
-//    else if (SOBA || SOBB)
+//    else if (ba || bb)
 //    {
-//      if (SOBA) Move(1);
-//      else if (SOBB)
+//      if (ba) Move(1);
+//      else if (bb)
 //      {
-//        while (!SOBA && srfB < 50)
+//        while (!ba && srfB < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(1);
 //          set_bits();
 //        }
 //      }
 //    }
-//    else if (SOLB)
+//    else if (lb)
 //    {
-//      while (!SOLA && srfL < 50)
+//      while (!la && srfL < 50)
 //      {
-//        set_m = spin_speed(1, 15, 3);
-//        set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        Move(4);
 //        set_bits();
 //      }
@@ -225,55 +225,55 @@
 //    else STOP();
 //  }
 //
-//  else if (SOFA || SOFB)
+//  else if (fa || fb)
 //  {
 //    while (big_sensor_num > 11 || big_sensor_num < 5)
 //    {
 //      biggest();
 //      biggest();
 //      set_bits();
-//      set_m = spin_speed(1, 15, 3);
-//      set_s = spin_speed(1, 15, 7);
-//      if (SOFA)
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
+//      if (fa)
 //      {
 //        Move(8);
 //      }
-//      else if (SORA || SORB)
+//      else if (ra || rb)
 //      {
-//        if (SORA) Move(9);
-//        else if (SORB)
+//        if (ra) Move(9);
+//        else if (rb)
 //        {
-//          while (!SORA && srfR < 50)
+//          while (!ra && srfR < 50)
 //          {
 //            Move(9);
 //            set_bits();
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          }
 //        }
 //      }
-//      else if (SOLA || SOLB)
+//      else if (la || lb)
 //      {
-//        if (SOLA) Move(7);
-//        else if (SOLB)
+//        if (la) Move(7);
+//        else if (lb)
 //        {
-//          while (!SOLA && srfL < 50)
+//          while (!la && srfL < 50)
 //          {
 //            Move(7);
 //            set_bits();
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          }
 //        }
 //      }
-//      else if (SOFB)
+//      else if (fb)
 //      {
-//        while (!SOFA)
+//        while (!fa)
 //        {
 //          Move(8);
 //          set_bits();
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          if (srfB < 50)
 //          {
 //            Move(8);
@@ -284,46 +284,46 @@
 //      }
 //      else STOP();
 //    }
-//    if (SOFA)
+//    if (fa)
 //    {
 //      Move(8);
 //    }
-//    else if (SORA || SORB)
+//    else if (ra || rb)
 //    {
-//      if (SORA) Move(9);
-//      else if (SORB)
+//      if (ra) Move(9);
+//      else if (rb)
 //      {
-//        while (!SORA && srfR < 50)
+//        while (!ra && srfR < 50)
 //        {
 //          Move(9);
 //          set_bits();
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        }
 //      }
 //    }
-//    else if (SOLA || SOLB)
+//    else if (la || lb)
 //    {
-//      if (SOLA) Move(7);
-//      else if (SOLB)
+//      if (la) Move(7);
+//      else if (lb)
 //      {
-//        while (!SOLA && srfL < 50)
+//        while (!la && srfL < 50)
 //        {
 //          Move(7);
 //          set_bits();
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        }
 //      }
 //    }
-//    else if (SOFB)
+//    else if (fb)
 //    {
-//      while (!SOFA)
+//      while (!fa)
 //      {
 //        Move(8);
 //        set_bits();
-//        set_m = spin_speed(1, 15, 3);
-//        set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        if (srfB < 50)
 //        {
 //          Move(8);
@@ -335,97 +335,97 @@
 //    else STOP();
 //  }
 //
-//  else if (SOBA || SOBB)
+//  else if (ba || bb)
 //  {
 //    while (big_sensor_num < 13 && big_sensor_num > 3)
 //    {
 //      biggest();
 //      biggest();
 //      set_bits();
-//      set_m = spin_speed(1, 15, 3);
-//      set_s = spin_speed(1, 15, 7);
-//      if (SOBA)
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
+//      if (ba)
 //      {
 //        Move(0);
 //      }
-//      else if (SORA || SORB)
+//      else if (ra || rb)
 //      {
-//        if (SORA) Move(15);
-//        else if (SORB)
+//        if (ra) Move(15);
+//        else if (rb)
 //        {
-//          while (!SORA && srfR < 50)
+//          while (!ra && srfR < 50)
 //          {
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //            Move(15);
 //            set_bits();
 //          }
 //        }
 //      }
-//      else if (SOLA || SOLB)
+//      else if (la || lb)
 //      {
-//        if (SOLA) Move(1);
-//        else if (SOLB)
+//        if (la) Move(1);
+//        else if (lb)
 //        {
-//          while (!SOLA && srfL < 50)
+//          while (!la && srfL < 50)
 //          {
-//            set_m = spin_speed(1, 15, 3);
-//            set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //            Move(1);
 //            set_bits();
 //          }
 //        }
 //      }
-//      else if (SOBB)
+//      else if (bb)
 //      {
-//        while (!SOBA && srfB < 50)
+//        while (!ba && srfB < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(0);
 //          set_bits();
 //        }
 //      }
 //      else STOP();
 //    }
-//    if (SOBA)
+//    if (ba)
 //    {
 //      Move(0);
 //    }
-//    else if (SORA || SORB)
+//    else if (ra || rb)
 //    {
-//      if (SORA) Move(15);
-//      else if (SORB)
+//      if (ra) Move(15);
+//      else if (rb)
 //      {
-//        while (!SORA && srfR < 50)
+//        while (!ra && srfR < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(15);
 //          set_bits();
 //        }
 //      }
 //    }
-//    else if (SOLA || SOLB)
+//    else if (la || lb)
 //    {
-//      if (SOLA) Move(1);
-//      else if (SOLB)
+//      if (la) Move(1);
+//      else if (lb)
 //      {
-//        while (!SOLA && srfL < 50)
+//        while (!la && srfL < 50)
 //        {
-//          set_m = spin_speed(1, 15, 3);
-//          set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //          Move(1);
 //          set_bits();
 //        }
 //      }
 //    }
-//    else if (SOBB)
+//    else if (bb)
 //    {
-//      while (!SOBA && srfB < 50)
+//      while (!ba && srfB < 50)
 //      {
-//        set_m = spin_speed(1, 15, 3);
-//        set_s = spin_speed(1, 15, 7);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
 //        Move(0);
 //        set_bits();
 //      }

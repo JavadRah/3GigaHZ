@@ -1,32 +1,32 @@
 ////4//////Calibrate///
 void Calibrate (void)
 {
-  for(int k=0; k<4; k++)
-  { if(k==0){
-    STOP();
-    delay(110);
-     Wire.beginTransmission(address); 
-  digitalWrite(BUZ,HIGH);
-  delay(100);
-  Wire.write(15);
-  Wire.write(0xff);
-  Wire.endTransmission();
-  digitalWrite(BUZ,LOW);
-  continue;
-  }
+  for (int k = 0; k < 4; k++)
+  { if (k == 0) {
+      STOP();
+      delay(110);
+      Wire.beginTransmission(address);
+      digitalWrite(BUZ, HIGH);
+      delay(100);
+      Wire.write(15);
+      Wire.write(0xff);
+      Wire.endTransmission();
+      digitalWrite(BUZ, LOW);
+      continue;
+    }
     STOP();
     delay(100);
-    MOTOR(1023,1023,1023,1023);
+    MOTOR(1023, 1023, 1023, 1023);
     delay(110);
     STOP();
-  Wire.beginTransmission(address); 
-  digitalWrite(BUZ,HIGH);
-  delay(100);
-  Wire.write(15);
-  Wire.write(0xff);
-  Wire.endTransmission();
-  digitalWrite(BUZ,LOW);   
-  delay(3000);
+    Wire.beginTransmission(address);
+    digitalWrite(BUZ, HIGH);
+    delay(100);
+    Wire.write(15);
+    Wire.write(0xff);
+    Wire.endTransmission();
+    digitalWrite(BUZ, LOW);
+    delay(3000);
   }
 }
 ////5//////COMPASS////
@@ -38,7 +38,7 @@ void Read_Compass()
   Wire.requestFrom(address, 2);     /////requests high byte
   n_cmp = ((Wire.read() << 8) | Wire.read());
   Wire.endTransmission();
-  n_cmp=map(n_cmp,0,3600,0,1023);
+  n_cmp = map(n_cmp, 0, 3600, 0, 1023);
 }
 ////6/////////////CMP////////////////////////////////////
 signed int CMPS(void)
@@ -63,7 +63,7 @@ signed int CMPS(void)
     b = b;
   }
 
-  Compass = -b;  
+  Compass = -b;
   return Compass;
 }
 ////7/////////////////SPIN SPEED////////////////////////////////
@@ -80,4 +80,21 @@ signed int spin_speed(int divided_value, int added_value, int zero_degree)
     compass_output = 0;
   return compass_output;
 }
+/////////////////////////////////////////////////////////////////
+void boogh(void){
+  digitalWrite(BUZ,HIGH);
+  delay(100);
+  digitalWrite(BUZ,LOW);
+  delay(100);
+  digitalWrite(BUZ,HIGH);
+  delay(100);
+  digitalWrite(BUZ,LOW);
+  delay(100);
+ 
+}
+  
+
+
+
+
 ///////////////////////////////////////////////////////////////////

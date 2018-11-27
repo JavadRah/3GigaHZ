@@ -23,14 +23,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-//  SENSOR[0]= (SENSOR[1]+SENSOR[15])/2;
-  //  for(int i=0;i<16;i++){
-  //    Serial.print(" Sensor ");
-  //    Serial.println(i);
-  //    Serial.println(SENSOR[i]);
-  //    delay(1000);
-  //
-  //  }
+   //SENSOR[15]=SENSOR[15]-50; //code meshki
 }
 
 
@@ -136,25 +129,6 @@ void biggestt(void)
   //      delay(500);
 }
 
-//void biggest(void)
-//{ refreshs();
-//  int i, c;
-//  int MAX = 0;
-//  for (i = 0; i < 16; i++)
-//  {
-//    if (MAX < SENSOR[i+2])
-//    {
-//      c = i;
-//      MAX = SENSOR[i];
-//    }
-//  }
-//  big_sensor = MAX;
-//  big_sensor_num = c;
-//   Serial.print(c);
-//      Serial.print(" | ");
-//      Serial.println(MAX);
-//      delay(500);
-//}
 
 ///////////////////////SHOW Kaf/////////////////////////////////////
 void SHOWKAF(void)
@@ -210,4 +184,14 @@ void SHOWSENSOR(void)
     Serial.println(bigsensor);
   //  delay(50);
 }
+void SHOWCMP()
+{
+   Read_Compass();
+    CMPS();
+    Serial.print(nSETUP);
+    Serial.print(" | ");
+    Serial.println(CMPS()); //Compass
+    delay(10);
+}
+
 

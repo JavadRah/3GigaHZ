@@ -86,7 +86,6 @@ void MOTOR(int pwmlf, int pwmlb, int pwmrf, int pwmrb)
   //  Serial.println(buf);
 }
 ////8////MOVEMENT//////////////////////////////
-////int set_m=0;
 void Move(int a)
 {
 
@@ -168,39 +167,39 @@ void follow(void)
   biggestt();
   if (big_sensor > distance )
   {
-//    //      set_bits();
-//    //      if (SORB == 1)
-//    //      {
-//    //        stop_out = 1;
-//    //        Move(9);
-//    //      }
-//    //      else if (SOLB == 1)
-//    //      {
-//    //        stop_out = 1;
-//    //        Move(7);
-//    //      }
-//    //      else if (SOBA == 1 && big_sensor_num > 1 && big_sensor_num < 8)
-//    //      {
-//    //        stop_out = 0;
-//    //        Move(4);
-//    //      }
-//    //      else if (SOBA == 1 && big_sensor_num < 13 && big_sensor_num > 9)
-//    //      {
-//    //        stop_out = 1;
-//    //        Move(12);
-//    //      }
-//    //      else if (SOBB == 1  && big_sensor_num > 3 && big_sensor_num < 8)
-//    //      {
-//    //        stop_out = 1;
-//    //        Move(2);
-//    //      }
-//    //      else if (SOBB == 1  && big_sensor_num < 13 && big_sensor_num > 9)
-//    //      {
-//    //        stop_out = 1;
-//    //        Move(13);
-//    //      }
-//    //      else
-//    //      {
+//          set_bits();
+//          if (SORB == 1)
+//          {
+//            stop_out = 1;
+//            Move(9);
+//          }
+//          else if (SOLB == 1)
+//          {
+//            stop_out = 1;
+//            Move(7);
+//          }
+//          else if (SOBA == 1 && big_sensor_num > 1 && big_sensor_num < 8)
+//          {
+//            stop_out = 0;
+//            Move(4);
+//          }
+//          else if (SOBA == 1 && big_sensor_num < 13 && big_sensor_num > 9)
+//          {
+//            stop_out = 1;
+//            Move(12);
+//          }
+//          else if (SOBB == 1  && big_sensor_num > 3 && big_sensor_num < 8)
+//          {
+//            stop_out = 1;
+//            Move(2);
+//          }
+//          else if (SOBB == 1  && big_sensor_num < 13 && big_sensor_num > 9)
+//          {
+//            stop_out = 1;
+//            Move(13);
+//          }
+//          else
+//          {
     switch (big_sensor_num)
     {
       case 0:

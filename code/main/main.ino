@@ -1,14 +1,16 @@
+
 /////////////////////////////StarT//////////////////////////////
 #include <Wire.h>
+#include <EEPROM.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
 unsigned int n_cmp, big_sensor, big_sensor_num = 17;
 float reduction;
 ////EEPROM write
-int nSETUP;
+int nSETUP, high, low;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
-int reader[4];
+int reader[6];
 char srfl[3];
 char srfb[3];
 char srfr[3], Mode;
@@ -17,14 +19,16 @@ boolean stop_out, other_location, location;
 char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
-int Sensor;
+int Sensor, eeprom_cmp;
 unsigned int distance = 70 , noise = 50;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
-int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba, fa, fb, la, lb, ra, rb, bb, ba;
+int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
+bool fa, fb, la, lb, ra, rb, bb, ba;
 char cmp[3], bigsensor[3], bigsensornum[2];
 // const int led = 13;
 int a[16];
+
 //eeprom
 //**************************PINS*************************//
 int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
@@ -86,7 +90,6 @@ void win(void)
 /////////////////////////nSETUP//////////////////////////////////
 void setup()
 {
-  analogWriteResolution(10);
   //=====================PINS=============================//
   pinMode(PWM_MRF, OUTPUT);
   pinMode(PWM_MLF, OUTPUT);
@@ -133,27 +136,28 @@ void setup()
   delay(200);
   digitalWrite(BUZ, LOW);
   delay(100);
-
+  analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
-  //delay(5000);
   //Calibrate();
-
+  nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
 }
 
 void loop()
 {
+
   reduction = 0.5;
- // refreshs();
-  //  refreshs();
-  biggestt();
-//SHOWSENSOR();
+  // refreshs();
   //SHOWKAF();
+  //biggestt();
+//SHOWSENSOR();
+//  ultrasonic ();
+//  SHOWSRF();
+//
   if (big_sensor > noise)
     follow();
   else
-    STOP();
-
-
+    BackToGoal();
+// Move_Width();
   set_m = spin_speed(1, 40, 10);
   set_s = spin_speed(1, 40, 10);
 
@@ -168,11 +172,7 @@ void loop()
     }*/
   ////////////////////////////
   Read_Compass();
-  //  CMPS();
-  //  Serial.print(nSETUP);
-  //  Serial.print(" | ");
-  //  Serial.println(CMPS()); //Compass
-  //  delay(10);
+  //Serial.println(nSETUP);
   if (digitalRead(SET) == LOW)
   {
     while (digitalRead(SET) == LOW)
@@ -180,9 +180,11 @@ void loop()
       Read_Compass();
       digitalWrite(BUZ, HIGH);
       delay(100);
-      Serial.println(n_cmp);
+    //  Serial.println(n_cmp);
+      nSETUP = n_cmp;
     }
-    nSETUP = n_cmp;
+    EEPROM.write(1, highByte(nSETUP));
+    EEPROM.write(2, lowByte(nSETUP));
     digitalWrite(BUZ, LOW);
     Kaf_setup();
     delay(100);
