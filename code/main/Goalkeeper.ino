@@ -5,7 +5,6 @@ void BackToGoal(void)
   ultrasonic();
   reduction = 0.3;
 //  stop_out = 1;
-//  Out = 'A';
   if (abs(Compass) > 20) {
     STOP();
 
@@ -30,7 +29,7 @@ void BackToGoal(void)
   else if (srfB > 45)
   {
     Move(8);
-   // boogh();
+
   }
   else if (srfB < 40)
   {

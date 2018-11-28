@@ -2,17 +2,12 @@
 /////////////////////////////StarT//////////////////////////////
 #include <Wire.h>
 #include <EEPROM.h>
-#include <interrupt.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-ISR(TIMER3_OVF_vect)
-{
-counter++;
-}
 unsigned int n_cmp, big_sensor, big_sensor_num = 17;
 float reduction;
 ////EEPROM write
-int nSETUP, high, low,counter;
+int nSETUP, high, low;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
 int SRFReader[6];
@@ -153,25 +148,20 @@ void loop()
 
   //Move(0);
   // refreshs();
-SHOWKAF();
+//SHOWKAF();
 //biggestt();
-//set_bits();
+set_bits();
 //SHOWSENSOR();
 //  ultrasonic ();
 //  SHOWSRF();
 //  delay(100);
 //  if (big_sensor > noise)   
-//  follow();
+////  follow();
 //OUT();
-//  Move_Width();
+////  Move_Width();
 //  else
 //  STOP();
-  //OUT();
-  if (ra)
-    {
-      Move(12);
-      boogh();
-    }
+//  OUT();
 //  BackToGoal   (); 
   set_m = spin_speed(1, 40, 10);
   set_s = spin_speed(1, 40, 10);

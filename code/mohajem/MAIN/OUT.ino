@@ -44,7 +44,7 @@ void OUT(void)
         if (ba) Move(15);
         else if (bb)
         {
-          while (!ba /*&& srfB < 50*/)
+          while (!ba && srfB < 50)
           {
             Move(15);
             set_bits();
@@ -55,7 +55,7 @@ void OUT(void)
       }
       else if (rb)
       {
-        while (!ra /*&& srfR < 50*/)
+        while (!ra && srfR < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -82,12 +82,12 @@ void OUT(void)
           set_bits();
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
-         /* if (srfB < 50)
+          if (srfB < 50)
           {
             Move(8);
             delay(300);
             break;
-          }*/
+          }
         }
       }
     }
@@ -96,7 +96,7 @@ void OUT(void)
       if (ba) Move(15);
       else if (bb)
       {
-        while (!ba /*&& srfB < 50*/)
+        while (!ba && srfB < 50)
         {
           Move(15);
           set_bits();
@@ -107,7 +107,7 @@ void OUT(void)
     }
     else if (rb)
     {
-      while (!ra /*&& srfR < 50*/)
+      while (!ra && srfR < 50)
       {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -142,12 +142,12 @@ void OUT(void)
             set_s = spin_speed(1, 40, 10);
             Move(7);
             set_bits();
-           /* if (srfB < 50)
+            if (srfB < 50)
             {
               Move(8);
               delay(300);
               break;
-            }*/
+            }
           }
         }
       }
@@ -156,7 +156,7 @@ void OUT(void)
         if (ba) Move(1);
         else if (bb)
         {
-          while (!ba /*&& srfB < 50*/)
+          while (!ba && srfB < 50)
           {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -167,7 +167,7 @@ void OUT(void)
       }
       else if (lb)
       {
-        while (!la /*&& srfL < 50*/)
+        while (!la && srfL < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -206,7 +206,7 @@ void OUT(void)
       if (ba) Move(1);
       else if (bb)
       {
-        while (!ba /*&& srfB < 50*/)
+        while (!ba && srfB < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -217,7 +217,7 @@ void OUT(void)
     }
     else if (lb)
     {
-      while (!la /*&& srfL < 50*/)
+      while (!la && srfL < 50)
       {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -246,7 +246,7 @@ void OUT(void)
         if (ra) Move(9);
         else if (rb)
         {
-          while (!ra /*&& srfR < 50*/)
+          while (!ra && srfR < 50)
           {
             Move(9);
             set_bits();
@@ -260,7 +260,7 @@ void OUT(void)
         if (la) Move(7);
         else if (lb)
         {
-          while (!la /*&& srfL < 50*/)
+          while (!la && srfL < 50)
           {
             Move(7);
             set_bits();
@@ -277,12 +277,12 @@ void OUT(void)
           set_bits();
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
-         /* if (srfB < 50)
+          if (srfB < 50)
           {
             Move(8);
             delay(300);
             break;
-          }*/
+          }
         }
       }
       else STOP();
@@ -296,7 +296,7 @@ void OUT(void)
       if (ra) Move(9);
       else if (rb)
       {
-        while (!ra/* && srfR < 50*/)
+        while (!ra && srfR < 50)
         {
           Move(9);
           set_bits();
@@ -310,7 +310,7 @@ void OUT(void)
       if (la) Move(7);
       else if (lb)
       {
-        while (!la /*&& srfL < 50*/)
+        while (!la && srfL < 50)
         {
           Move(7);
           set_bits();
@@ -327,12 +327,12 @@ void OUT(void)
         set_bits();
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
-      /*  if (srfB < 50)
+        if (srfB < 50)
         {
           Move(8);
           delay(300);
           break;
-        }*/
+        }
       }
     }
     else STOP();
@@ -356,7 +356,7 @@ void OUT(void)
         if (ra) Move(15);
         else if (rb)
         {
-          while (!ra /*&& srfR < 50*/)
+          while (!ra && srfR < 50)
           {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -370,7 +370,7 @@ void OUT(void)
         if (la) Move(1);
         else if (lb)
         {
-          while (!la /*&& srfL < 50*/)
+          while (!la && srfL < 50)
           {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -381,7 +381,7 @@ void OUT(void)
       }
       else if (bb)
       {
-        while (!ba /*&& srfB < 50*/)
+        while (!ba && srfB < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -400,7 +400,7 @@ void OUT(void)
       if (ra) Move(15);
       else if (rb)
       {
-        while (!ra /*&& srfR < 50*/)
+        while (!ra && srfR < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -414,7 +414,7 @@ void OUT(void)
       if (la) Move(1);
       else if (lb)
       {
-        while (!la /*&& srfL < 50*/)
+        while (!la && srfL < 50)
         {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
@@ -425,7 +425,7 @@ void OUT(void)
     }
     else if (bb)
     {
-      while (!ba /*&& srfB < 50*/)
+      while (!ba && srfB < 50)
       {
             set_m = spin_speed(1, 40, 10);
             set_s = spin_speed(1, 40, 10);
