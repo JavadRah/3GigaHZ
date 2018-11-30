@@ -49,9 +49,8 @@ void BackToGoal(void)
   }
 
 }
-//
-//19/////////////////////////srf///////////////////////////////////
-void ultrasonic()
+///////////////////////////////srf
+void ultrasonics()
 {
   Wire.beginTransmission(112);
   Wire.write(byte(0x00));
@@ -65,8 +64,9 @@ void ultrasonic()
   Wire.write(byte(0x00));
   Wire.write(byte(0x51));
   Wire.endTransmission();
- delay(70);
-  // ////////////////////////////////////////////////////////////////////////////////
+}
+// delay(70);
+  void ultrasonicr(){
   Wire.beginTransmission(112);
   Wire.write(byte(0x02));
   Wire.endTransmission();
@@ -99,9 +99,15 @@ void ultrasonic()
   }
  srfR= SRFReader[2];
  srfB= SRFReader[4];
- srfL=SRFReader[3];
+ srfL=SRFReader[3];}
 
-}
+void ultrasonic(){
+ultrasonics();
+ultrasonicr();}
+
+  // ////////////////////////////////////////////////////////////////////////////////
+  
+
 void SHOWSRF()
 {
   sprintf (srfr, "%03d", SRFReader[2]);
@@ -138,7 +144,7 @@ void SHOWSRF()
 ////////////////////
 void Move_Width (void)
 {
-  ultrasonic();
+  ultrasonics();
   biggestt();
   if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR>55)
   {

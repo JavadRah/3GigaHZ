@@ -1,23 +1,23 @@
-
-////.......................OUT.................................//
-////10/////////////////////////////////////////////////////////////
+//.......................OUT.................................//
+//10/////////////////////////////////////////////////////////////
 //
 void OUT(void)
 {
+  reduction=0.3;
   set_bits();
-        biggestt();
+  biggestt();
 
   if (ra || rb)
   {
     while (big_sensor_num < 8)
     {
-      //biggestt();
+      biggestt();
       set_bits();
-       set_m = spin_speed(1, 40, 10);
-       set_s = spin_speed(1, 40, 10);
-      if (ra)
+//       set_m = spin_speed(1, 40, 10);
+//       set_s = spin_speed(1, 40, 10);
+     if (ra)
       {
-        Move(12);   //boogh();
+        Move(12);   
       }
       else if (fa || fb)
       {
@@ -28,14 +28,14 @@ void OUT(void)
           {
             Move(9);
             set_bits();
-             set_m = spin_speed(1, 40, 10);
-             set_s = spin_speed(1, 40, 10);
-            if (srfB < 50)
+//             set_m = spin_speed(1, 40, 10);
+//             set_s = spin_speed(1, 40, 10);
+      /*      if (srfB < 50)
             {
               Move(8);
               delay(300);
               break;
-            }
+            }*/
           }
         }
       }
@@ -48,8 +48,8 @@ void OUT(void)
           {
             Move(15);
             set_bits();
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
           }
         }
       }
@@ -57,19 +57,20 @@ void OUT(void)
       {
         while (!ra /*&& srfR < 50*/)
         {
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
+//            set_m = spin_speed(1, 40, 10);
+//            set_s = spin_speed(1, 40, 10);
           Move(12);
           set_bits();
         }
       }
-      else STOP();
+      else 
+      STOP();
+      ;
     }
     ////////////////////////////////////////// Khareje While /////////////////////////////////////////////////
     if (ra)
     {
       Move(12);
-      boogh();
     }
     else if (fa || fb)
     {
@@ -120,6 +121,7 @@ void OUT(void)
   }
   else if (la || lb)
   {
+    //boogh();
     while (big_sensor_num > 8)
     {
       biggestt();
@@ -192,12 +194,12 @@ void OUT(void)
             set_s = spin_speed(1, 40, 10);
           Move(7);
           set_bits();
-          if (srfB < 50)
+          /*if (srfB < 50)
           {
             Move(8);
             delay(300);
             break;
-          }
+          }*/
         }
       }
     }
@@ -435,9 +437,11 @@ void OUT(void)
     }
     else STOP();
   }
+  
   else
   {
     if (big_sensor > noise) follow();
     else STOP();
+    
   }
 }

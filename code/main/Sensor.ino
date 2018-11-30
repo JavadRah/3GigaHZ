@@ -68,49 +68,40 @@ void set_bits(void)
   kaf_L[1] =  analogRead(36);
 
   //////////////////out of bound 1
-  F_noise [0] = kaf_F[0] - 235;
-  F_noise [1] = kaf_F[1] - 35;
-  L_noise [0] = kaf_L[0] - 535;
-  L_noise [1] = kaf_L[1] - 80;
-  //////////////check nashode/////////////
-  R_noise [0] = kaf_R[0] - 155;
-  R_noise [1] = kaf_R[1] - 105; 
-  B_noise [0] = kaf_B[0] - 175;
-  B_noise [1] = kaf_B[1] - 55;
+  F_noise [0] = kaf_F[0] - 245;
+  F_noise [1] = kaf_F[1] - 300;
+  L_noise [0] = kaf_L[0] - 200;
+  L_noise [1] = kaf_L[1] - 200;
+  R_noise [0] = kaf_R[0] - 230;
+  R_noise [1] = kaf_R[1] - 190; 
+  B_noise [0] = kaf_B[0] - 380;
+  B_noise [1] = kaf_B[1] - 390;
   ////////////////////////////////////
   if (R_noise[0] >= 0)  ra = 1;
   else   ra = 0; 
-  Serial.print("ra=");  
-  Serial.println(ra);
+
   if ( F_noise[0] >= 0)  fa = 1;
   else   fa = 0;
-   Serial.print("fa=");  
-    Serial.println(fa);
+
   if ( L_noise[0] >= 0)  la = 1;
   else   la = 0;
-   Serial.print("la=");  
-  Serial.println(la);
+
   if ( B_noise[0] >= 0)  ba = 1;
   else   ba = 0;
-   Serial.print("ba=");  
- Serial.println(ba);
-  //////////////////out of bound 2
+
+  ////////////////out of bound 2
   if ( R_noise[1] >= 0)  rb = 1;
   else   rb = 0;
-   Serial.print("rb=");  
- Serial.println(rb);
+
   if (F_noise[1] >= 0)  fb = 1;
   else   fb = 0;
-   Serial.print("fb=");  
- Serial.println(fb);
+
   if ( L_noise[1] >= 0)  lb = 1;
   else  lb = 0;
-   Serial.print("lb=");  
- Serial.println(lb);
+
   if ( B_noise[1] >= 0)  bb = 1;
   else   bb = 0;
-   Serial.print("bb=");  
-   Serial.println(bb);
+
 }
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 //void get_battery_voltage()
@@ -154,10 +145,10 @@ void SHOWKAF(void)
        delay(200);
        Serial.print("KAF LA:");
        Serial.println(kaf_L[0]);
-       delay(400);
+       delay(200);
        Serial.print("KAF FB:");
        Serial.println(kaf_F[1]);
-       delay(400);
+       delay(200);
        Serial.print("KAF RB:");
        Serial.println(kaf_R[1]);
        delay(200);
@@ -201,4 +192,11 @@ void SHOWCMP()
     Serial.print(" | ");
     Serial.println(CMPS()); //Compass
     delay(10);
+}
+void SHOW_KAF()
+{
+  set_bits();
+  Serial.print("F1: ");Serial.print(fa);Serial.print(" F2:");Serial.print(fb);Serial.print(" R1:");Serial.print(ra);Serial.print( " R2:");
+  Serial.print(rb);Serial.print(" B1:");Serial.print(ba);Serial.print(" B2:");Serial.print(bb);Serial.print(" L1:");Serial.print(la);
+  Serial.print(" L2:");Serial.println(lb);
 }

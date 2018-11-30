@@ -2,14 +2,9 @@
 /////////////////////////////StarT//////////////////////////////
 #include <Wire.h>
 #include <EEPROM.h>
-#include <interrupt.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-ISR(TIMER3_OVF_vect)
-{
-counter++;
-}
-unsigned int n_cmp, big_sensor, big_sensor_num = 17;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17,r_stop;
 float reduction;
 ////EEPROM write
 int nSETUP, high, low,counter;
@@ -25,7 +20,7 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor, eeprom_cmp;
-unsigned int distance = 450,noise= 50;
+unsigned int distance = 450 ,noise= 50;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
@@ -44,35 +39,36 @@ int mlf, mrb, mlb, mrf;
 int srfL , srfB , srfR ;
 //******************************************************//
 //......................FUNC.............................//
+;;;
 
 //15///////////////////////WIN///////////////////////
-void win(void)
-{
-  digitalWrite(BUZ, HIGH);
-  delay(200);
-  digitalWrite(BUZ, LOW);
-  delay(150);
-
-  digitalWrite(BUZ, HIGH);
-  delay(200);
-  digitalWrite(BUZ, LOW);
-  delay(150);
-
-  digitalWrite(BUZ, HIGH);
-  delay(100);
-  digitalWrite(BUZ, LOW);
-  delay(100);
-
-  digitalWrite(BUZ, HIGH);
-  delay(100);
-  digitalWrite(BUZ, LOW);
-  delay(150);
-
-  digitalWrite(BUZ, HIGH);
-  delay(200);
-  digitalWrite(BUZ, LOW);
-  delay(200);
-}
+//void win(void)
+//{
+//  digitalWrite(BUZ, HIGH);
+//  delay(200);
+//  digitalWrite(BUZ, LOW);
+//  delay(150);
+//
+//  digitalWrite(BUZ, HIGH);
+//  delay(200);
+//  digitalWrite(BUZ, LOW);
+//  delay(150);
+//
+//  digitalWrite(BUZ, HIGH);
+//  delay(100);
+//  digitalWrite(BUZ, LOW);
+//  delay(100);
+//
+//  digitalWrite(BUZ, HIGH);
+//  delay(100);
+//  digitalWrite(BUZ, LOW);
+//  delay(150);
+//
+//  digitalWrite(BUZ, HIGH);
+//  delay(200);
+//  digitalWrite(BUZ, LOW);
+//  delay(200);
+//}
 //16//////////////////////CHECK EN////////////////////////////////
 //void EN (void)
 //{
@@ -110,23 +106,23 @@ void setup()
   pinMode(GPIO_MLB, OUTPUT);
   pinMode(BALL, INPUT);
   pinMode(SOFA, INPUT);
-    pinMode(SOBB, INPUT);
-    pinMode(SOBA, INPUT);
-    pinMode(SORA, INPUT);
-    pinMode(SORB, INPUT);
+  pinMode(SOBB, INPUT);
+  pinMode(SOBA, INPUT);
+  pinMode(SORA, INPUT);
+  pinMode(SORB, INPUT);
   pinMode(SOFB, INPUT);
-    pinMode(SOLA, INPUT);
-    pinMode(SOLB, INPUT);
+  pinMode(SOLA, INPUT);
+  pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
   pinMode(SET, INPUT_PULLUP);
   //  pinMode(D1,INPUT);
   //  pinMode(D2,INPUT);
   //  pinMode(D3,INPUT);
   //  pinMode(D4,INPUT);
-  //  pinMode(led,OUTPUT);
+//    pinMode(led,OUTPUT);
   //  //pinMode(,);
   //=============================================//
-  Serial.begin(38400);
+  Serial.begin(9600);
   Wire.begin();
   // Serial.begin(9600);
   digitalWrite(BUZ, HIGH);
@@ -144,37 +140,33 @@ void setup()
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
 //Calibrate();
+//  Serial.println("Hi ... ");
   nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
 }
 
 void loop()
 {
-    reduction = 0.3;
-
-  //Move(0);
-  // refreshs();
-SHOWKAF();
-//biggestt();
+  reduction = 0.3;
 //set_bits();
+
+// refreshs();
+//SHOW_KAF();
+biggestt();
+set_bits();
 //SHOWSENSOR();
 //  ultrasonic ();
 //  SHOWSRF();
 //  delay(100);
-//  if (big_sensor > noise)   
 //  follow();
-//OUT();
-//  Move_Width();
-//  else
-//  STOP();
-  //OUT();
-  if (ra)
-    {
-      Move(12);
-      boogh();
-    }
-//  BackToGoal   (); 
-  set_m = spin_speed(1, 40, 10);
-  set_s = spin_speed(1, 40, 10);
+  if (big_sensor > noise)   
+  OUT();
+  else
+  STOP();
+
+  //  Move_Width();
+//SHOWSENSOR();
+  set_m = spin_speed(1, 40, 15);
+  set_s = spin_speed(1, 40, 15);
 
   //////harekate vazie mah//////
   /*
@@ -197,13 +189,14 @@ SHOWKAF();
       delay(100);
      //Serial.println(n_cmp);
       nSETUP = n_cmp;
+      set_bits();
     }
     EEPROM.write(1, highByte(nSETUP));
     EEPROM.write(2, lowByte(nSETUP));
     digitalWrite(BUZ, LOW);
     Kaf_setup();
-    delay(100);
   }
+  
   //      if(digitalRead(D1)==HIGH)
   //      {
   //        while(digitalRead(D1)==HIGH)

@@ -1,7 +1,6 @@
 ////4/////////////MOTOR///////////////////////////////
 void MOTOR(int pwmlf, int pwmlb, int pwmrf, int pwmrb)
 {
-  char buf[25];
   pwmlf = pwmlf * 1 * reduction;
   pwmlb = pwmlb * 1 * reduction;
   pwmrf = pwmrf * 1 * reduction;
@@ -162,7 +161,6 @@ void Move(int a)
 //////////////////////////////////////////////////////////////
 void follow(void)
 {
-//  reduction=0.3;
   refreshs();
   biggestt();
   if (big_sensor > distance )
@@ -342,6 +340,8 @@ void follow(void)
 ////11///////////////////////STOP///////////////////////////////////
 void STOP(void)
 {
-  reduction = 1;
+  r_stop = reduction ;
+  reduction=1;
   MOTOR(set_s, set_s, set_s, set_s);
+  reduction=r_stop;
 }
