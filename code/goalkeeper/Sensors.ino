@@ -1,10 +1,4 @@
-////1////////////////////////////////////////////////
-//unsigned int read_adc(int c)
-//{
-//  int o = analogRead(c);
-////  float p = (1023 * o) / 5;
-//  return o;
-//}
+/////////////////////////
 unsigned int  convert_adc(int Sensor) {
   int a = 0;
   digitalWrite(AD0, (((Sensor) / 1) % 2));
@@ -23,7 +17,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-   //SENSOR[15]=SENSOR[15]-50; //code meshki
+   SENSOR[15]=SENSOR[15]-50; 
 }
 
 
@@ -68,49 +62,43 @@ void set_bits(void)
   kaf_L[1] =  analogRead(36);
 
   //////////////////out of bound 1
-  F_noise [0] = kaf_F[0] - 480;
-  F_noise [1] = kaf_F[1] - 465;
-  L_noise [0] = kaf_L[0] - 510;
-  L_noise [1] = kaf_L[1] - 350;
-  //////////////check nashode/////////////
-  R_noise [0] = kaf_R[0] - 740;
-  R_noise [1] = kaf_R[1] - 735; 
-  B_noise [0] = kaf_B[0] - 435;
-  B_noise [1] = kaf_B[1] - 460;
+
   ////////////////////////////////////
-  if (R_noise[0] >= 0)  ra = 1;
-  else   ra = 0; 
-//  Serial.print("ra=");  
-//  Serial.println(ra);
-  if ( F_noise[0] >= 0)  fa = 1;
+  if (R_noise[0] < kaf_R[0])  ra = 1;
+  else   ra = 0;
+
+  if (F_noise[0] < kaf_F[0])  fa = 1;
   else   fa = 0;
-   Serial.print("fa=");  
-    Serial.println(fa);
-  if ( L_noise[0] >= 0)  la = 1;
+
+  if ( L_noise[0] < kaf_L[0])  la = 1;
   else   la = 0;
-   Serial.print("la=");  
-  Serial.println(la);
-  if ( B_noise[0] >= 0)  ba = 1;
+
+  if ( B_noise[0] < kaf_B[0])  ba = 1;
   else   ba = 0;
-   Serial.print("ba=");  
- Serial.println(ba);
-  //////////////////out of bound 2
-  if ( R_noise[1] >= 0)  rb = 1;
+
+  ////////////////out of bound 2
+  if ( R_noise[1] < kaf_R[1])  rb = 1;
   else   rb = 0;
-//   Serial.print("rb=");  
-// Serial.println(rb);
-  if (F_noise[1] >= 0)  fb = 1;
+
+  if (F_noise[1] < kaf_F[1])  fb = 1;
   else   fb = 0;
-   Serial.print("fb=");  
- Serial.println(fb);
-  if ( L_noise[1] >= 0)  lb = 1;
+
+  if ( L_noise[1] < kaf_L[1])  lb = 1;
   else  lb = 0;
-   Serial.print("lb=");  
- Serial.println(lb);
-  if ( B_noise[1] >= 0)  bb = 1;
+
+  if ( B_noise[1] < kaf_B[1])  bb = 1;
   else   bb = 0;
-   Serial.print("bb=");  
-   Serial.println(bb);
+
+}
+void set_kaf() {
+  F_noise [0] = kaf_F[0] + 150;
+  F_noise [1] = kaf_F[1] + 90 ;
+  L_noise [0] = kaf_L[0] + 100;
+  L_noise [1] = kaf_L[1] + 70 ;
+  R_noise [0] = kaf_R[0] + 70 ;
+  R_noise [1] = kaf_R[1] + 80 ;
+  B_noise [0] = kaf_B[0] + 150;
+  B_noise [1] = kaf_B[1] + 190;
 }
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 //void get_battery_voltage()
@@ -132,10 +120,6 @@ void biggestt(void)
   }
   big_sensor = c;
   big_sensor_num = b;
-  //      Serial.print(b);
-  //      Serial.print(" | ");
-  //      Serial.println(c);
-  //      delay(500);
 }
 
 
@@ -143,30 +127,30 @@ void biggestt(void)
 void SHOWKAF(void)
 {
   Kaf_setup();
-//       Serial.print("KAF FA:");
-//       Serial.println(kaf_F[0]);
-//       delay(200);
-//       Serial.print("KAF RA:");
-//       Serial.println(kaf_R[0]);
-//       delay(200);
-//       Serial.print("KAF BA:");
-//       Serial.println(kaf_B[0]);
-//       delay(200);
-//       Serial.print("KAF LA:");
-//       Serial.println(kaf_L[0]);
-//       delay(400);
-//       Serial.print("KAF FB:");
-//       Serial.println(kaf_F[1]);
-//       delay(400);
-//       Serial.print("KAF RB:");
-//       Serial.println(kaf_R[1]);
-//       delay(200);
-//       Serial.print("KAF BB:");
-//       Serial.println(kaf_B[1]);
-//       delay(200);
-//       Serial.print("KAF LB:");
-//       Serial.println(kaf_L[1]);
-//       delay(200);
+       Serial.print("KAF FA:");
+       Serial.println(kaf_F[0]);
+       delay(200);
+       Serial.print("KAF RA:");
+       Serial.println(kaf_R[0]);
+       delay(200);
+       Serial.print("KAF BA:");
+       Serial.println(kaf_B[0]);
+       delay(200);
+       Serial.print("KAF LA:");
+       Serial.println(kaf_L[0]);
+       delay(400);
+       Serial.print("KAF FB:");
+       Serial.println(kaf_F[1]);
+       delay(400);
+       Serial.print("KAF RB:");
+       Serial.println(kaf_R[1]);
+       delay(200);
+       Serial.print("KAF BB:");
+       Serial.println(kaf_B[1]);
+       delay(200);
+       Serial.print("KAF LB:");
+       Serial.println(kaf_L[1]);
+       delay(200);
 }
 
 void SHOWSENSOR(void)
@@ -201,4 +185,11 @@ void SHOWCMP()
     Serial.print(" | ");
     Serial.println(CMPS()); //Compass
     delay(10);
+}
+void SHOW_KAF()
+{
+  set_bits();
+  Serial.print("F1: "); Serial.print(fa); Serial.print(" F2:"); Serial.print(fb); Serial.print(" R1:"); Serial.print(ra); Serial.print( " R2:");
+  Serial.print(rb); Serial.print(" B1:"); Serial.print(ba); Serial.print(" B2:"); Serial.print(bb); Serial.print(" L1:"); Serial.print(la);
+  Serial.print(" L2:"); Serial.println(lb);
 }

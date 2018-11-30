@@ -1,54 +1,3 @@
-////17/////////////////////////GOAL KEEPER///////////////////////////
-//
-void BackToGoal(void)
-{
-  ultrasonic();
-  reduction = 0.3;
-//  stop_out = 1;
-  if (abs(Compass) > 20) {
-    STOP();
-
-  }
-  else if (srfL < 40 && srfR < 40 && srfB < 40)
-  {
-    Move(0);
-
-  }
-  else if (srfL < 55 && srfR > 60)
-  {
-    //if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
-   // else
-    Move(4) ;
-  }
-  else if (srfR < 55 && srfL > 80)
-  {
-    //if ((SOLA || SOLB) && (SOFA != 1 && SORA != 1 && SOBA != 0)) Move(10);
-    //else
-    Move(12);
-  }
-  else if (srfB > 45)
-  {
-    Move(8);
-
-  }
-  else if (srfB < 40)
-  {
-    Move(0);
-  }
-  else
-  {
-//    if (big_sensor > noise)
-//    {
-//      EN();
-//    }
-//    else 
-// digitalWrite(BUZ,HIGH);
-// delay(50);
-//  digitalWrite(BUZ,LOW);
-      STOP();
-  }
-
-}
 ///////////////////////////////srf
 void ultrasonics()
 {
@@ -66,7 +15,7 @@ void ultrasonics()
   Wire.endTransmission();
 }
 // delay(70);
-  void ultrasonicr(){
+void ultrasonicr(void) {
   Wire.beginTransmission(112);
   Wire.write(byte(0x02));
   Wire.endTransmission();
@@ -97,17 +46,77 @@ void ultrasonics()
     SRFReader[2] = SRFReader [2] << 8;
     SRFReader[2] |= Wire.read();
   }
- srfR= SRFReader[2];
- srfB= SRFReader[4];
- srfL=SRFReader[3];}
+  srfR = SRFReader[2];
+  srfB = SRFReader[4];
+  srfL = SRFReader[3];
+}
 
-void ultrasonic(){
-ultrasonics();
-ultrasonicr();}
+void SRF()
+{ 
+  interrupt++;
+  if (interrupt == 3){
+    ultrasonics();
+    s=1;
+    }
+  else if (interrupt==4){
+    ultrasonicr();
+    interrupt = 0;
+   }
+    Serial.println(srfB);
+    Serial.println(srfL);
+    Serial.println(srfR);
+}
+////17/////////////////////////GOAL KEEPER///////////////////////////
+//
+void BackToGoal(void)
+{
+  reduction = 0.3;
+  //  stop_out = 1;
+  if (abs(Compass) > 20) {
+    STOP();
 
-  // ////////////////////////////////////////////////////////////////////////////////
-  
+  }
+  else if (srfL < 40 && srfR < 40 && srfB < 40)
+  {
+    Move(0);
 
+  }
+  else if (srfL < 55 && srfR > 60)
+  {
+//    if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
+//     else
+    Move(4) ;
+  }
+  else if (srfR < 55 && srfL > 80)
+  {
+    //if ((SOLA || SOLB) && (SOFA != 1 && SORA != 1 && SOBA != 0)) Move(10);
+    //else
+    Move(12);
+  }
+  else if (srfB > 45)
+  {
+    Move(8);
+
+  }
+  else if (srfB < 40)
+  {
+    Move(0);
+  }
+  else
+  {
+    //    if (big_sensor > noise)
+    //    {
+    //      EN();
+    //    }
+    //    else
+    // digitalWrite(BUZ,HIGH);
+    // delay(50);
+    //  digitalWrite(BUZ,LOW);
+    STOP();
+
+  }
+}
+// ////////////////////////////////////////////////////////////////////////////////
 void SHOWSRF()
 {
   sprintf (srfr, "%03d", SRFReader[2]);
@@ -122,36 +131,17 @@ void SHOWSRF()
 
 }
 
-////12//////////////////////MOVE WIDTH//////////////////////////////
-//void MoveWidth (void)
-//{
-//  if (big_sensor_num != 0 && big_sensor_num < 4 && big_sensor > noise && srfR > 145)
-//  {
-//    reduction = 0.5;
-//    Move(4);
-//  }
-//
-//  else if (big_sensor_num > 12 && big_sensor > noise && srfL > 145)
-//  {
-//    reduction = 0.5;
-//    Move(12);
-//  }
-//  else
-//  {
-//    STOP();
-//  }
-//}
 ////////////////////
 void Move_Width (void)
 {
   ultrasonics();
   biggestt();
-  if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR>55)
+  if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR > 55)
   {
     reduction = 0.5;
     Move(4);
 
-    
+
   }
   else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 60)
   {

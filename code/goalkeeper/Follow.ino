@@ -162,7 +162,6 @@ void Move(int a)
 //////////////////////////////////////////////////////////////
 void follow(void)
 {
-//  reduction=0.3;
   refreshs();
   biggestt();
   if (big_sensor > distance )

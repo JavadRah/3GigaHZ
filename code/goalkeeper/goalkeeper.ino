@@ -2,11 +2,12 @@
 /////////////////////////////StarT//////////////////////////////
 #include <Wire.h>
 #include <EEPROM.h>
+IntervalTimer myTimer;
 #define address 0x60
 //-------------------------- VAR -------------------------//
 unsigned int n_cmp, big_sensor, big_sensor_num = 17;
 float reduction;
-////EEPROM write
+volatile unsigned int interrupt=0,s;
 int nSETUP, high, low;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
@@ -28,7 +29,7 @@ bool fa, fb, la, lb, ra, rb, bb, ba;
 char cmp[3], bigsensor[3], bigsensornum[2];
 // const int led = 13;
 int a[16];
-
+void SRF(void);
 //eeprom
 //**************************PINS*************************//
 int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
@@ -139,7 +140,16 @@ void setup()
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
 //Calibrate();
+  myTimer.begin(SRF,100000);
   nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
+  R_noise[0]=(EEPROM.read(3)<<8 |EEPROM.read(4));
+  R_noise[1]=(EEPROM.read(5)<<8 |EEPROM.read(6));
+  F_noise[0]=(EEPROM.read(7)<<8 |EEPROM.read(8));
+  F_noise[1]=(EEPROM.read(9)<<8 |EEPROM.read(10));
+  L_noise[0]=(EEPROM.read(11)<<8|EEPROM.read(12));
+  L_noise[1]=(EEPROM.read(13)<<8|EEPROM.read(14));
+  B_noise[0]=(EEPROM.read(15)<<8|EEPROM.read(16));
+  B_noise[1]=(EEPROM.read(17)<<8|EEPROM.read(18));
 }
 
 void loop()
@@ -150,21 +160,22 @@ void loop()
   // refreshs();
 //SHOWKAF();
 //biggestt();
-set_bits();
+//set_bits();
 //SHOWSENSOR();
-//  ultrasonic ();
-//  SHOWSRF();
-//  delay(100);
+ // SHOWSRF();
+//Serial.print(interrupt);
+//Serial.print(" | ");
+//Serial.println(s);
 //  if (big_sensor > noise)   
-////  follow();
+// Move_Width();
+//else BackToGoal();
 //OUT();
-////  Move_Width();
 //  else
 //  STOP();
 //  OUT();
-//  BackToGoal   (); 
-  set_m = spin_speed(1, 40, 10);
-  set_s = spin_speed(1, 40, 10);
+//   
+  set_m = spin_speed(1, 40, 15);
+  set_s = spin_speed(1, 40, 15);
 
   //////harekate vazie mah//////
   /*
@@ -190,6 +201,22 @@ set_bits();
     }
     EEPROM.write(1, highByte(nSETUP));
     EEPROM.write(2, lowByte(nSETUP));
+    EEPROM.write(3,highByte(R_noise[0]));
+    EEPROM.write(4,lowByte(R_noise[0]));
+    EEPROM.write(5,highByte(R_noise[1]));
+    EEPROM.write(6,lowByte(R_noise[1]));
+    EEPROM.write(7,highByte(F_noise[0]));
+    EEPROM.write(8,lowByte(F_noise[0]));
+    EEPROM.write(9,highByte(F_noise[1]));
+    EEPROM.write(10,lowByte(F_noise[1]));
+    EEPROM.write(11,highByte(L_noise[0]));
+    EEPROM.write(12,lowByte(L_noise[0]));
+    EEPROM.write(13,highByte(L_noise[0]));
+    EEPROM.write(14,lowByte(L_noise[0]));
+    EEPROM.write(15,highByte(B_noise[0]));
+    EEPROM.write(16,lowByte(B_noise[0]));
+    EEPROM.write(17,highByte(B_noise[0]));
+    EEPROM.write(18,lowByte(B_noise[0]));
     digitalWrite(BUZ, LOW);
     Kaf_setup();
     delay(100);

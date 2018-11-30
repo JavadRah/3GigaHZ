@@ -4,10 +4,10 @@
 #include <EEPROM.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-unsigned int n_cmp, big_sensor, big_sensor_num = 17,r_stop;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17, r_stop;
 float reduction;
 ////EEPROM write
-int nSETUP, high, low,counter;
+int nSETUP, high, low, counter;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
 int SRFReader[6];
@@ -20,7 +20,7 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor, eeprom_cmp;
-unsigned int distance = 450 ,noise= 50;
+unsigned int distance = 450 , noise = 50,intrt = 0;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
@@ -119,12 +119,9 @@ void setup()
   //  pinMode(D2,INPUT);
   //  pinMode(D3,INPUT);
   //  pinMode(D4,INPUT);
-//    pinMode(led,OUTPUT);
+  //    pinMode(led,OUTPUT);
   //  //pinMode(,);
   //=============================================//
-  Serial.begin(9600);
-  Wire.begin();
-  // Serial.begin(9600);
   digitalWrite(BUZ, HIGH);
   delay(100);
   digitalWrite(BUZ, LOW);
@@ -137,34 +134,46 @@ void setup()
   delay(200);
   digitalWrite(BUZ, LOW);
   delay(100);
+  ////////////////////
+  Serial.begin(38400);
+  Wire.begin();
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
-//Calibrate();
-//  Serial.println("Hi ... ");
-  nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
+  // Calibrate();
+
+      nSETUP=(EEPROM.read(1)<< 8|EEPROM.read(2));
+  R_noise[0]=(EEPROM.read(3)<<8 |EEPROM.read(4));
+  R_noise[1]=(EEPROM.read(5)<<8 |EEPROM.read(6));
+  F_noise[0]=(EEPROM.read(7)<<8 |EEPROM.read(8));
+  F_noise[1]=(EEPROM.read(9)<<8 |EEPROM.read(10));
+  L_noise[0]=(EEPROM.read(11)<<8|EEPROM.read(12));
+  L_noise[1]=(EEPROM.read(13)<<8|EEPROM.read(14));
+  B_noise[0]=(EEPROM.read(15)<<8|EEPROM.read(16));
+  B_noise[1]=(EEPROM.read(17)<<8|EEPROM.read(18));
 }
 
 void loop()
 {
-  reduction = 0.3;
-//set_bits();
+  reduction = 0.4;
+  //set_bits();
 
-// refreshs();
-//SHOW_KAF();
-biggestt();
-set_bits();
-//SHOWSENSOR();
-//  ultrasonic ();
-//  SHOWSRF();
-//  delay(100);
-//  follow();
-  if (big_sensor > noise)   
-  OUT();
+  // refreshs();
+//  SHOW_KAF();
+  biggestt();
+  set_bits();
+
+//   SHOWSENSOR();
+  // ultrasonic();
+  // SHOWSRF();
+  // delay(100);
+  // follow();
+  if (big_sensor > noise)
+    OUT();
   else
-  STOP();
+    STOP();
 
   //  Move_Width();
-//SHOWSENSOR();
+  //SHOWSENSOR();
   set_m = spin_speed(1, 40, 15);
   set_s = spin_speed(1, 40, 15);
 
@@ -174,29 +183,44 @@ set_bits();
     {
     Serial.print(i);
     Serial.print(" : ");
-    Move(i);
+//    Move(i);
     delay(100);
     }*/
   ////////////////////////////
   Read_Compass();
-//  Serial.println(Compass);
+  //  Serial.println(Compass);
   if (digitalRead(SET) == LOW)
   {
     while (digitalRead(SET) == LOW)
     {
       Read_Compass();
       digitalWrite(BUZ, HIGH);
-      delay(100);
-     //Serial.println(n_cmp);
+      //Serial.println(n_cmp);
       nSETUP = n_cmp;
-      set_bits();
+      set_kaf();
     }
     EEPROM.write(1, highByte(nSETUP));
     EEPROM.write(2, lowByte(nSETUP));
+    EEPROM.write(3,highByte(R_noise[0]));
+    EEPROM.write(4,lowByte(R_noise[0]));
+    EEPROM.write(5,highByte(R_noise[1]));
+    EEPROM.write(6,lowByte(R_noise[1]));
+    EEPROM.write(7,highByte(F_noise[0]));
+    EEPROM.write(8,lowByte(F_noise[0]));
+    EEPROM.write(9,highByte(F_noise[1]));
+    EEPROM.write(10,lowByte(F_noise[1]));
+    EEPROM.write(11,highByte(L_noise[0]));
+    EEPROM.write(12,lowByte(L_noise[0]));
+    EEPROM.write(13,highByte(L_noise[0]));
+    EEPROM.write(14,lowByte(L_noise[0]));
+    EEPROM.write(15,highByte(B_noise[0]));
+    EEPROM.write(16,lowByte(B_noise[0]));
+    EEPROM.write(17,highByte(B_noise[0]));
+    EEPROM.write(18,lowByte(B_noise[0]));
     digitalWrite(BUZ, LOW);
     Kaf_setup();
   }
-  
+
   //      if(digitalRead(D1)==HIGH)
   //      {
   //        while(digitalRead(D1)==HIGH)

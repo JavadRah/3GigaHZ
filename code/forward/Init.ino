@@ -81,20 +81,16 @@ signed int spin_speed(int divided_value, int added_value, int zero_degree)
   return compass_output;
 }
 /////////////////////////////////////////////////////////////////
-void boogh(void){
-  digitalWrite(BUZ,HIGH);
+void boogh(void) {
+  digitalWrite(BUZ, HIGH);
   delay(100);
-  digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(100);
-  digitalWrite(BUZ,HIGH);
+  digitalWrite(BUZ, HIGH);
   delay(100);
-  digitalWrite(BUZ,LOW);
+  digitalWrite(BUZ, LOW);
   delay(100);
- 
+
 }
-  
-
-
-
 
 ///////////////////////////////////////////////////////////////////
