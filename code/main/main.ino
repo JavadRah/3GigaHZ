@@ -1,15 +1,13 @@
 
 /////////////////////////////StarT//////////////////////////////
-#include <TimerOne.h>
 #include <Wire.h>
 #include <EEPROM.h>
 #define address 0x60
 //-------------------------- VAR -------------------------//
-unsigned int n_cmp, big_sensor, big_sensor_num = 17, r_stop;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17,r_stop;
 float reduction;
 ////EEPROM write
-volatile unsigned int i = 1;
-int nSETUP, high, low, counter;
+int nSETUP, high, low,counter;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
 int SRFReader[6];
@@ -22,7 +20,7 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor, eeprom_cmp;
-unsigned int distance = 450 , noise = 50;
+unsigned int distance = 450 ,noise= 50;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
@@ -121,7 +119,7 @@ void setup()
   //  pinMode(D2,INPUT);
   //  pinMode(D3,INPUT);
   //  pinMode(D4,INPUT);
-  //    pinMode(led,OUTPUT);
+//    pinMode(led,OUTPUT);
   //  //pinMode(,);
   //=============================================//
   Serial.begin(9600);
@@ -141,35 +139,32 @@ void setup()
   delay(100);
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
-  //Calibrate();
-  //  Serial.println("Hi ... ");
+//Calibrate();
+//  Serial.println("Hi ... ");
   nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
-  Timer1.initialize(10000);
-  Timer1.attachInterrupt(SRF);
 }
 
 void loop()
 {
   reduction = 0.3;
-  //set_bits();
+//set_bits();
 
-  // refreshs();
-  //SHOW_KAF();
-  //biggestt();
-  //set_bits();
-  //SHOWSENSOR();
-  //  SHOWSRF();
-  //  delay(100);
-  //  follow();
-  if (big_sensor > noise)
-    OUT();
+// refreshs();
+//SHOW_KAF();
+biggestt();
+set_bits();
+//SHOWSENSOR();
+//  ultrasonic ();
+//  SHOWSRF();
+//  delay(100);
+//  follow();
+  if (big_sensor > noise)   
+  OUT();
   else
-    STOP();
-  srfR = SRFReader[2];
-  srfB = SRFReader[4];
-  srfL = SRFReader[3];
+  STOP();
+
   //  Move_Width();
-  //SHOWSENSOR();
+//SHOWSENSOR();
   set_m = spin_speed(1, 40, 15);
   set_s = spin_speed(1, 40, 15);
 
@@ -184,7 +179,7 @@ void loop()
     }*/
   ////////////////////////////
   Read_Compass();
-  //  Serial.println(Compass);
+//  Serial.println(Compass);
   if (digitalRead(SET) == LOW)
   {
     while (digitalRead(SET) == LOW)
@@ -192,7 +187,7 @@ void loop()
       Read_Compass();
       digitalWrite(BUZ, HIGH);
       delay(100);
-      //Serial.println(n_cmp);
+     //Serial.println(n_cmp);
       nSETUP = n_cmp;
       set_bits();
     }
@@ -201,7 +196,7 @@ void loop()
     digitalWrite(BUZ, LOW);
     Kaf_setup();
   }
-
+  
   //      if(digitalRead(D1)==HIGH)
   //      {
   //        while(digitalRead(D1)==HIGH)
