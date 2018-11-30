@@ -140,7 +140,7 @@ void setup()
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
 //Calibrate();
-  myTimer.begin(SRF,100000);
+  myTimer.begin(SRF,25000);
   nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
   R_noise[0]=(EEPROM.read(3)<<8 |EEPROM.read(4));
   R_noise[1]=(EEPROM.read(5)<<8 |EEPROM.read(6));
@@ -154,22 +154,21 @@ void setup()
 
 void loop()
 {
-    reduction = 0.3;
+    reduction = 0.5;
 
   //Move(0);
   // refreshs();
-//SHOWKAF();
+SHOW_KAF();
 //biggestt();
 //set_bits();
 //SHOWSENSOR();
- // SHOWSRF();
-//Serial.print(interrupt);
-//Serial.print(" | ");
-//Serial.println(s);
-//  if (big_sensor > noise)   
 // Move_Width();
-//else BackToGoal();
-//OUT();
+if(big_sensor<500||srfB<85) Move_Width();
+else
+{OUT();
+BackToGoal();}
+
+//else 
 //  else
 //  STOP();
 //  OUT();
@@ -189,6 +188,7 @@ void loop()
   ////////////////////////////
   Read_Compass();
 //  Serial.println(Compass);
+//  delay(1);
   if (digitalRead(SET) == LOW)
   {
     while (digitalRead(SET) == LOW)

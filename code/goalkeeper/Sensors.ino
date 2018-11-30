@@ -17,7 +17,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-   SENSOR[15]=SENSOR[15]-50; 
+   //SENSOR[15]=SENSOR[15]-50; 
 }
 
 

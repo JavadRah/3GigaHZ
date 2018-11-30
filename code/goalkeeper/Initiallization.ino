@@ -32,6 +32,7 @@ void Calibrate (void)
 ////5//////COMPASS////
 void Read_Compass()
 {
+  noInterrupts();
   Wire.beginTransmission(address);  ////starts communication with cmp03
   Wire.write(2);                    /////sends the register we wish to read
   Wire.endTransmission();
@@ -39,6 +40,7 @@ void Read_Compass()
   n_cmp = ((Wire.read() << 8) | Wire.read());
   Wire.endTransmission();
   n_cmp = map(n_cmp, 0, 3600, 0, 1023);
+  interrupts();
 }
 ////6/////////////CMP////////////////////////////////////
 signed int CMPS(void)

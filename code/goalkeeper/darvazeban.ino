@@ -62,9 +62,13 @@ void SRF()
     ultrasonicr();
     interrupt = 0;
    }
-    Serial.println(srfB);
-    Serial.println(srfL);
-    Serial.println(srfR);
+//   Serial.println(" ");
+//  Serial.print("b=");
+//    Serial.print(srfB);
+//  Serial.print(" l=");
+//    Serial.print(srfL);
+//  Serial.print(" r=");
+//    Serial.print(srfR);
 }
 ////17/////////////////////////GOAL KEEPER///////////////////////////
 //
@@ -81,17 +85,15 @@ void BackToGoal(void)
     Move(0);
 
   }
-  else if (srfL < 55 && srfR > 60)
+  else if (srfL < 70 && srfR > 60)
   {
-//    if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
-//     else
-    Move(4) ;
+    if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
+     else Move(4) ;
   }
   else if (srfR < 55 && srfL > 80)
   {
-    //if ((SOLA || SOLB) && (SOFA != 1 && SORA != 1 && SOBA != 0)) Move(10);
-    //else
-    Move(12);
+    if ((SOLA || SOLB) && (SOFA != 1 && SORA != 1 && SOBA != 0)) Move(10);
+    else Move(12);
   }
   else if (srfB > 45)
   {
@@ -109,48 +111,28 @@ void BackToGoal(void)
     //      EN();
     //    }
     //    else
-    // digitalWrite(BUZ,HIGH);
-    // delay(50);
-    //  digitalWrite(BUZ,LOW);
     STOP();
 
   }
 }
 // ////////////////////////////////////////////////////////////////////////////////
-void SHOWSRF()
-{
-  sprintf (srfr, "%03d", SRFReader[2]);
-  Serial.print("srfr=");
-  Serial.println(srfr);
-  sprintf (srfb, "%03d", SRFReader[4]);
-  Serial.print("srfb=");
-  Serial.println(srfb);
-  sprintf (srfl, "%03d", SRFReader[3]);
-  Serial.print("srfl=");
-  Serial.println(srfl);
-
-}
-
-////////////////////
 void Move_Width (void)
 {
-  ultrasonics();
   biggestt();
-  if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR > 55)
+  if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR > 60)
   {
     reduction = 0.5;
     Move(4);
-
-
   }
-  else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 60)
+  else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 80)
   {
     reduction = 0.5;
     Move(12);
-
   }
+  
   else
-  {
-    BackToGoal();
+ { 
+if(big_sensor<500||srfB>85) BackToGoal(); 
+  else follow(); 
   }
 }
