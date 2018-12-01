@@ -154,21 +154,18 @@ void setup()
 
 void loop()
 {
-  reduction = 0.4;
+  reduction = 0.9;
   //set_bits();
-
   // refreshs();
 //  SHOW_KAF();
   biggestt();
   set_bits();
 
 //   SHOWSENSOR();
-  // ultrasonic();
-  // SHOWSRF();
-  // delay(100);
-  // follow();
   if (big_sensor > noise)
+   {
     OUT();
+   }
   else
     STOP();
 

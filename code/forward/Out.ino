@@ -3,7 +3,7 @@
 //
 void OUT(void)
 {
-  reduction = 0.5;
+  reduction = 0.8;
   set_bits();
   biggestt();
 

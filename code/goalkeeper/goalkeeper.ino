@@ -21,7 +21,7 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor, eeprom_cmp;
-unsigned int distance = 450,noise= 50;
+unsigned int distance = 450,noise= 50,distanceM=500;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
@@ -31,6 +31,7 @@ char cmp[3], bigsensor[3], bigsensornum[2];
 int a[16];
 void SRF(void);
 //eeprom
+ int led=13;
 //**************************PINS*************************//
 int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
 int SDA1 = 18, SCLl = 19, GPIO_MRF = 24, GPIO_MLF = 25, GPIO_MRB = 26, GPIO_MLB = 27, BUZ = 28;
@@ -114,6 +115,7 @@ void setup()
     pinMode(SOLA, INPUT);
     pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
+pinMode(led,OUTPUT);
   pinMode(SET, INPUT_PULLUP);
   //  pinMode(D1,INPUT);
   //  pinMode(D2,INPUT);
@@ -153,26 +155,43 @@ void setup()
 }
 
 void loop()
-{
-    reduction = 0.5;
-
-  //Move(0);
-  // refreshs();
-SHOW_KAF();
-//biggestt();
-//set_bits();
+{  
+    reduction = 0.7;
+//Kaf_setup();
+// refreshs();
+//SRF();
+//SHOW_KAF();
+//Serial.print("HI...");
+biggestt();
+set_bits();
 //SHOWSENSOR();
-// Move_Width();
-if(big_sensor<500||srfB<85) Move_Width();
-else
-{OUT();
-BackToGoal();}
 
-//else 
+if(big_sensor>noise&&srfB<85)
+{
+OUT();
+}
+else if(big_sensor>noise&&big_sensor<distanceM/*&&big_sensor<distanceM && srfB>85*/){
+ Move_Width();    
+ }
+else {
+BackToGoal();}
+//  
+//   
+//}=
+//Move_Width(); 
+//else if(big_sensor>noise||srfB<65){
+//  follow();}
+
+//  di/gitalWrite(led,HIGH);
+//  Move_Width();
+// alWrite(led,LOW);
+//    }
+//OUT();
+
 //  else
 //  STOP();
 //  OUT();
-//   
+//}   
   set_m = spin_speed(1, 40, 15);
   set_s = spin_speed(1, 40, 15);
 

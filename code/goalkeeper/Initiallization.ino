@@ -95,7 +95,12 @@ void boogh(void){
  
 }
   
-
+void BLINK(void){
+  digitalWrite(led,HIGH);
+  delay(100);
+  digitalWrite(led,LOW);
+  delay(100);
+}
 
 
 
