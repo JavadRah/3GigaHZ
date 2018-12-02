@@ -3,7 +3,6 @@
 //
 void OUT(void)
 {
-  reduction = 0.8;
   set_bits();
   biggestt();
 
@@ -13,8 +12,6 @@ void OUT(void)
     {
       biggestt();
       set_bits();
-      //       set_m = spin_speed(1, 40, 10);
-      //       set_s = spin_speed(1, 40, 10);
       if (ra)
       {
         Move(12);
@@ -28,14 +25,6 @@ void OUT(void)
           {
             Move(9);
             set_bits();
-            //             set_m = spin_speed(1, 40, 10);
-            //             set_s = spin_speed(1, 40, 10);
-            /*      if (srfB < 50)
-                  {
-                    Move(8);
-                    delay(300);
-                    break;
-                  }*/
           }
         }
       }
@@ -48,8 +37,6 @@ void OUT(void)
           {
             Move(15);
             set_bits();
-            //            set_m = spin_speed(1, 40, 10);
-            //            set_s = spin_speed(1, 40, 10);
           }
         }
       }
@@ -57,8 +44,6 @@ void OUT(void)
       {
         while (!ra /*&& srfR < 50*/)
         {
-          //            set_m = spin_speed(1, 40, 10);
-          //            set_s = spin_speed(1, 40, 10);
           Move(12);
           set_bits();
         }
@@ -80,14 +65,6 @@ void OUT(void)
         {
           Move(9);
           set_bits();
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
-          /* if (srfB < 50)
-            {
-             Move(8);
-             delay(300);
-             break;
-            }*/
         }
       }
     }
@@ -100,8 +77,6 @@ void OUT(void)
         {
           Move(15);
           set_bits();
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
         }
       }
     }
@@ -109,8 +84,6 @@ void OUT(void)
     {
       while (!ra /*&& srfR < 50*/)
       {
-        set_m = spin_speed(1, 40, 10);
-        set_s = spin_speed(1, 40, 10);
         Move(12);
         set_bits();
       }
@@ -125,9 +98,6 @@ void OUT(void)
     {
       biggestt();
       set_bits();
-      set_m = spin_speed(1, 40, 10);
-      set_s = spin_speed(1, 40, 10);
-
       if (la)
       {
         Move(4);
@@ -141,8 +111,6 @@ void OUT(void)
         {
           while (!fa)
           {
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
             Move(7);
             set_bits();
             /* if (srfB < 50)
@@ -158,8 +126,6 @@ void OUT(void)
           while (!la)
           {
             set_bits();
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
             Move(4);
           }
           if (rb || ra)
@@ -167,8 +133,6 @@ void OUT(void)
             while (!la)
             {
               set_bits();
-              set_m = spin_speed(1, 40, 10);
-              set_s = spin_speed(1, 40, 10);
               Move(4);
             }
           }
@@ -181,8 +145,6 @@ void OUT(void)
         {
           while (!ba /*&& srfB < 50*/)
           {
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
             Move(1);
             set_bits();
           }
@@ -192,8 +154,6 @@ void OUT(void)
       {
         while (!la /*&& srfL < 50*/)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(4);
           set_bits();
         }
@@ -211,8 +171,6 @@ void OUT(void)
       {
         while (!fa)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(7);
           set_bits();
           /*if (srfB < 50)
@@ -231,8 +189,6 @@ void OUT(void)
       {
         while (!ba /*&& srfB < 50*/)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(1);
           set_bits();
         }
@@ -242,8 +198,6 @@ void OUT(void)
     {
       while (!la /*&& srfL < 50*/)
       {
-        set_m = spin_speed(1, 40, 10);
-        set_s = spin_speed(1, 40, 10);
         Move(4);
         set_bits();
       }
@@ -257,8 +211,6 @@ void OUT(void)
       biggestt();
       biggestt();
       set_bits();
-      set_m = spin_speed(1, 40, 10);
-      set_s = spin_speed(1, 40, 10);
       if (fa)
       {
         Move(8);
@@ -272,8 +224,6 @@ void OUT(void)
           {
             Move(9);
             set_bits();
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
           }
         }
       }
@@ -286,8 +236,6 @@ void OUT(void)
           {
             Move(7);
             set_bits();
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
           }
         }
       }
@@ -297,8 +245,6 @@ void OUT(void)
         {
           Move(8);
           set_bits();
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           /* if (srfB < 50)
             {
              Move(8);
@@ -322,8 +268,6 @@ void OUT(void)
         {
           Move(9);
           set_bits();
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
         }
       }
     }
@@ -336,8 +280,6 @@ void OUT(void)
         {
           Move(7);
           set_bits();
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
         }
       }
     }
@@ -347,14 +289,6 @@ void OUT(void)
       {
         Move(8);
         set_bits();
-        set_m = spin_speed(1, 40, 10);
-        set_s = spin_speed(1, 40, 10);
-        /*  if (srfB < 50)
-          {
-            Move(8);
-            delay(300);
-            break;
-          }*/
       }
     }
     else STOP();
@@ -367,8 +301,6 @@ void OUT(void)
       biggestt();
       biggestt();
       set_bits();
-      set_m = spin_speed(1, 40, 10);
-      set_s = spin_speed(1, 40, 10);
       if (ba)
       {
         Move(0);
@@ -380,8 +312,6 @@ void OUT(void)
         {
           while (!ra /*&& srfR < 50*/)
           {
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
             Move(15);
             set_bits();
           }
@@ -394,8 +324,6 @@ void OUT(void)
         {
           while (!la /*&& srfL < 50*/)
           {
-            set_m = spin_speed(1, 40, 10);
-            set_s = spin_speed(1, 40, 10);
             Move(1);
             set_bits();
           }
@@ -405,8 +333,6 @@ void OUT(void)
       {
         while (!ba /*&& srfB < 50*/)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(0);
           set_bits();
         }
@@ -424,8 +350,6 @@ void OUT(void)
       {
         while (!ra /*&& srfR < 50*/)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(15);
           set_bits();
         }
@@ -438,8 +362,6 @@ void OUT(void)
       {
         while (!la /*&& srfL < 50*/)
         {
-          set_m = spin_speed(1, 40, 10);
-          set_s = spin_speed(1, 40, 10);
           Move(1);
           set_bits();
         }
@@ -449,8 +371,6 @@ void OUT(void)
     {
       while (!ba /*&& srfB < 50*/)
       {
-        set_m = spin_speed(1, 40, 10);
-        set_s = spin_speed(1, 40, 10);
         Move(0);
         set_bits();
       }

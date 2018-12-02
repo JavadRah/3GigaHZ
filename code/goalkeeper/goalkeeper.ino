@@ -5,7 +5,7 @@
 IntervalTimer myTimer;
 #define address 0x60
 //-------------------------- VAR -------------------------//
-unsigned int n_cmp, big_sensor, big_sensor_num = 17;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17,r_stop,nointerrupt;
 float reduction;
 volatile unsigned int interrupt=0,s;
 int nSETUP, high, low;
@@ -107,15 +107,15 @@ void setup()
   pinMode(GPIO_MLB, OUTPUT);
   pinMode(BALL, INPUT);
   pinMode(SOFA, INPUT);
-    pinMode(SOBB, INPUT);
-    pinMode(SOBA, INPUT);
-    pinMode(SORA, INPUT);
-    pinMode(SORB, INPUT);
+  pinMode(SOBB, INPUT);
+  pinMode(SOBA, INPUT);
+  pinMode(SORA, INPUT);
+  pinMode(SORB, INPUT);
   pinMode(SOFB, INPUT);
-    pinMode(SOLA, INPUT);
-    pinMode(SOLB, INPUT);
+  pinMode(SOLA, INPUT);
+  pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
-pinMode(led,OUTPUT);
+  pinMode(led,OUTPUT);
   pinMode(SET, INPUT_PULLUP);
   //  pinMode(D1,INPUT);
   //  pinMode(D2,INPUT);
@@ -124,9 +124,6 @@ pinMode(led,OUTPUT);
   //  pinMode(led,OUTPUT);
   //  //pinMode(,);
   //=============================================//
-  Serial.begin(38400);
-  Wire.begin();
-  // Serial.begin(9600);
   digitalWrite(BUZ, HIGH);
   delay(100);
   digitalWrite(BUZ, LOW);
@@ -139,10 +136,14 @@ pinMode(led,OUTPUT);
   delay(200);
   digitalWrite(BUZ, LOW);
   delay(100);
+  
+  Serial.begin(38400);
+  Wire.begin();
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
 //Calibrate();
   myTimer.begin(SRF,25000);
+/////////////////EEPROM
   nSETUP = (EEPROM.read(1) << 8) | EEPROM.read(2);
   R_noise[0]=(EEPROM.read(3)<<8 |EEPROM.read(4));
   R_noise[1]=(EEPROM.read(5)<<8 |EEPROM.read(6));
@@ -155,49 +156,30 @@ pinMode(led,OUTPUT);
 }
 
 void loop()
-{  
-    reduction = 0.7;
+{
+    reduction = 0.78;
 //Kaf_setup();
 // refreshs();
 //SRF();
-//SHOW_KAF();
-//Serial.print("HI...");
+//SHOWSENSOR();
 biggestt();
 set_bits();
-//SHOWSENSOR();
+//if(big_sensor>noise) OUT();
+//else
+//STOP();
 
-if(big_sensor>noise&&srfB<85)
+/////////////////////////////////
+if(big_sensor>noise&&srfB<60)
 {
 OUT();
 }
-else{
-  STOP();
-  BLINK();
-}
-//else if(big_sensor>noise&&big_sensor<distanceM/*&&big_sensor<distanceM && srfB>85*/){
-// Move_Width();    
-// }
-//else {
-//BackToGoal();}
-//  
-//   
-//}=
-//Move_Width(); 
-//else if(big_sensor>noise||srfB<65){
-//  follow();}
+else if(big_sensor>noise&&big_sensor<distanceM /*&& srfB<85*/) Move_Width();    
+else BackToGoal();
 
-//  di/gitalWrite(led,HIGH);
-//  Move_Width();
-// alWrite(led,LOW);
-//    }
-//OUT();
-
-//  else
-//  STOP();
-//  OUT();
-//}   
-  set_m = spin_speed(1, 40, 15);
-  set_s = spin_speed(1, 40, 15);
+//////////////////////////
+//
+//  set_m = spin_speed(1, 40, 15);
+//  set_s = spin_speed(1, 40, 15);
 
   //////harekate vazie mah//////
   /*
@@ -209,21 +191,20 @@ else{
     delay(100);
     }*/
   ////////////////////////////
-  Read_Compass();
-//  Serial.println(Compass);
-//  delay(1);
   if (digitalRead(SET) == LOW)
   {
     while (digitalRead(SET) == LOW)
     {
+      nointerrupt=100;
       Read_Compass();
       digitalWrite(BUZ, HIGH);
-      delay(100);
-     //Serial.println(n_cmp);
+//     Serial.println(n_cmp);
       nSETUP = n_cmp;
+      set_kaf();
     }
-    EEPROM.write(1, highByte(nSETUP));
-    EEPROM.write(2, lowByte(nSETUP));
+    nointerrupt=0;
+    EEPROM.write(1,highByte(nSETUP));
+    EEPROM.write(2,lowByte(nSETUP));
     EEPROM.write(3,highByte(R_noise[0]));
     EEPROM.write(4,lowByte(R_noise[0]));
     EEPROM.write(5,highByte(R_noise[1]));
@@ -234,15 +215,14 @@ else{
     EEPROM.write(10,lowByte(F_noise[1]));
     EEPROM.write(11,highByte(L_noise[0]));
     EEPROM.write(12,lowByte(L_noise[0]));
-    EEPROM.write(13,highByte(L_noise[0]));
-    EEPROM.write(14,lowByte(L_noise[0]));
+    EEPROM.write(13,highByte(L_noise[1]));
+    EEPROM.write(14,lowByte(L_noise[1]));
     EEPROM.write(15,highByte(B_noise[0]));
     EEPROM.write(16,lowByte(B_noise[0]));
-    EEPROM.write(17,highByte(B_noise[0]));
-    EEPROM.write(18,lowByte(B_noise[0]));
+    EEPROM.write(17,highByte(B_noise[1]));
+    EEPROM.write(18,lowByte(B_noise[1]));
     digitalWrite(BUZ, LOW);
     Kaf_setup();
-    delay(100);
   }
   //      if(digitalRead(D1)==HIGH)
   //      {

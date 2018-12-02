@@ -2,23 +2,25 @@
 void Calibrate (void)
 {
   for (int k = 0; k < 4; k++)
-  { if (k == 0) {
-      STOP();
-      delay(110);
-      Wire.beginTransmission(address);
-      digitalWrite(BUZ, HIGH);
-      delay(100);
-      Wire.write(15);
-      Wire.write(0xff);
-      Wire.endTransmission();
-      digitalWrite(BUZ, LOW);
-      continue;
-    }
-    STOP();
-    delay(100);
-    MOTOR(1023, 1023, 1023, 1023);
-    delay(110);
-    STOP();
+  { 
+   nointerrupt=100;
+//if (k == 0) {
+//      STOP();
+//      delay(110);
+//      Wire.beginTransmission(address);
+//      digitalWrite(BUZ, HIGH);
+//      delay(100);
+//      Wire.write(15);
+//      Wire.write(0xff);
+//      Wire.endTransmission();
+//      digitalWrite(BUZ, LOW);
+//      continue;
+//    }
+//    STOP();
+//    delay(100);
+//    MOTOR(1023, 1023, 1023, 1023);
+//    delay(110);
+//    STOP();
     Wire.beginTransmission(address);
     digitalWrite(BUZ, HIGH);
     delay(100);
@@ -28,11 +30,11 @@ void Calibrate (void)
     digitalWrite(BUZ, LOW);
     delay(3000);
   }
+ nointerrupt=0;
 }
 ////5//////COMPASS////
 void Read_Compass()
 {
-  noInterrupts();
   Wire.beginTransmission(address);  ////starts communication with cmp03
   Wire.write(2);                    /////sends the register we wish to read
   Wire.endTransmission();
@@ -83,24 +85,6 @@ signed int spin_speed(int divided_value, int added_value, int zero_degree)
   return compass_output;
 }
 /////////////////////////////////////////////////////////////////
-void boogh(void){
-  digitalWrite(BUZ,HIGH);
-  delay(100);
-  digitalWrite(BUZ,LOW);
-  delay(100);
-  digitalWrite(BUZ,HIGH);
-  delay(100);
-  digitalWrite(BUZ,LOW);
-  delay(100);
- 
-}
-  
-void BLINK(void){
-  digitalWrite(led,HIGH);
-  delay(100);
-  digitalWrite(led,LOW);
-  delay(100);
-}
 
 
 

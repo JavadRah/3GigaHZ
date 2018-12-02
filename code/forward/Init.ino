@@ -3,23 +3,24 @@ void Calibrate (void)
 {
   for (int k = 0; k < 4; k++)
   {
-    if (k == 0) {
-      STOP();
-      delay(110);
-      Wire.beginTransmission(address);
-      digitalWrite(BUZ, HIGH);
-      delay(100);
-      Wire.write(15);
-      Wire.write(0xff);
-      Wire.endTransmission();
-      digitalWrite(BUZ, LOW);
-      continue;
-    }
-    STOP();
-    delay(100);
-    MOTOR(1023, 1023, 1023, 1023);
-    delay(110);
-    STOP();
+    //    if (k == 0) {
+    //      STOP();
+    //      delay(110);
+    //      Wire.beginTransmission(address);
+    //      digitalWrite(BUZ, HIGH);
+    //      delay(100);
+    //      Wire.write(15);
+    //      Wire.write(0xff);
+    //      Wire.endTransmission();
+    //      digitalWrite(BUZ, LOW);
+    //      continue;
+    //    }
+    //    STOP();
+    //    delay(100);
+    //    MOTOR(1023, 1023, 1023, 1023);
+    //    delay(110);
+    //    STOP();
+    nointerrupt = 100;
     Wire.beginTransmission(address);
     digitalWrite(BUZ, HIGH);
     delay(100);
@@ -28,10 +29,8 @@ void Calibrate (void)
     Wire.endTransmission();
     digitalWrite(BUZ, LOW);
     delay(3000);
-    if (k == 3) {
-      BLINK();
-    }
   }
+  nointerrupt = 0;
 }
 ////5//////COMPASS////
 void Read_Compass()
@@ -85,7 +84,8 @@ signed int spin_speed(int divided_value, int added_value, int zero_degree)
   return compass_output;
 }
 /////////////////////////////////////////////////////////////////
-void boogh(void) {
+void boogh(void)
+{
   digitalWrite(BUZ, HIGH);
   delay(100);
   digitalWrite(BUZ, LOW);
@@ -94,17 +94,16 @@ void boogh(void) {
   delay(100);
   digitalWrite(BUZ, LOW);
   delay(100);
-
 }
 
 ///////////////////////////////////////////////////////////////////
 
 void Counter()
 {
-  SHOW_KAF();
-  Serial.print(" | ");
-  Serial.print(big_sensor);
-  Serial.print(" | ");
-  Serial.println(big_sensor_num);
-  set_s = spin_speed(1, 40, 15);
+  if (nointerrupt == 0)
+  {
+    set_s = spin_speed(1, 40, 15);
+    Serial.println(n_cmp);
+    reduction =  0.7;
+  }
 }

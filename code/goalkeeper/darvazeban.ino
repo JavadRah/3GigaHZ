@@ -52,23 +52,31 @@ void ultrasonicr(void) {
 }
 
 void SRF()
-{ 
-  interrupt++;
-  if (interrupt ==3){
-    ultrasonics();
-    s=1;
+{
+  if (nointerrupt == 0)
+  {
+    interrupt++;
+    if (interrupt == 3) {
+      ultrasonics();
     }
-  else if (interrupt==6){
-    ultrasonicr();
-    interrupt = 0;}
-//   }
-//   Serial.println(" ");
-//  Serial.print("b=");
-//    Serial.print(srfB);
-//  Serial.print(" l=");
-//    Serial.print(srfL);
-//  Serial.print(" r=");
-//    Serial.print(srfR);
+    else if (interrupt == 6) {
+      ultrasonicr();
+      interrupt = 0;
+    }
+    set_s = spin_speed(1, 40, 15);
+//    SHOWSRF
+//    Serial.println(n_cmp);
+  }
+    reduction =  0.7;
+
+  //  SHOW_KAF();
+//     Serial.println(" ");
+//    Serial.print("b=");
+//      Serial.print(srfB);
+//    Serial.print(" l=");
+//      Serial.print(srfL);
+//    Serial.print(" r=");
+//      Serial.print(srfR);
 }
 ////17/////////////////////////GOAL KEEPER///////////////////////////
 //
@@ -76,7 +84,7 @@ void BackToGoal(void)
 {
   reduction = 0.4;
   //  stop_out = 1;
- 
+
   if (abs(Compass) > 20) {
     STOP();
   }
@@ -87,7 +95,7 @@ void BackToGoal(void)
   else if (srfL < 70 && srfR > 60)
   {
     if ((SORA || SORB) && (SOFA != 1 && SOLA != 1 && SOBA != 0)) Move(6);
-     else Move(4) ;
+    else Move(4) ;
   }
   else if (srfR < 55 && srfL > 80)
   {
@@ -104,15 +112,14 @@ void BackToGoal(void)
   }
   else
   {
-//        if (big_sensor>noise||big_sensor<distanceM||srfB<85)
-//        {
-//         Move_Width();
-//        }
-//        else
+    //        if (big_sensor>noise||big_sensor<distanceM||srfB<85)
+    //        {
+    //         Move_Width();
+    //        }
+    //        else
     STOP();
 
   }
-//  BLINK();
 }
 // ////////////////////////////////////////////////////////////////////////////////
 void Move_Width (void)
@@ -128,9 +135,9 @@ void Move_Width (void)
     reduction = 0.5;
     Move(12);
   }
-  
+
   else
- { 
-  BackToGoal();
-}
+  {
+    BackToGoal();
+  }
 }

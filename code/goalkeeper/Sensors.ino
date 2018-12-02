@@ -94,11 +94,11 @@ void set_kaf() {
   F_noise [0] = kaf_F[0] + 150;
   F_noise [1] = kaf_F[1] + 90 ;
   L_noise [0] = kaf_L[0] + 100;
-  L_noise [1] = kaf_L[1] + 70 ;
+  L_noise [1] = kaf_L[1] + 60 ;
   R_noise [0] = kaf_R[0] + 70 ;
-  R_noise [1] = kaf_R[1] + 80 ;
-  B_noise [0] = kaf_B[0] + 150;
-  B_noise [1] = kaf_B[1] + 190;
+  R_noise [1] = kaf_R[1] + 60 ;
+  B_noise [0] = kaf_B[0] + 100;
+  B_noise [1] = kaf_B[1] + 80;
 }
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 //void get_battery_voltage()
@@ -127,30 +127,30 @@ void biggestt(void)
 void SHOWKAF(void)
 {
   Kaf_setup();
-       Serial.print("KAF FA:");
-       Serial.println(kaf_F[0]);
-       delay(200);
-       Serial.print("KAF RA:");
-       Serial.println(kaf_R[0]);
-       delay(200);
-       Serial.print("KAF BA:");
-       Serial.println(kaf_B[0]);
-       delay(200);
-       Serial.print("KAF LA:");
-       Serial.println(kaf_L[0]);
-       delay(400);
-       Serial.print("KAF FB:");
-       Serial.println(kaf_F[1]);
-       delay(400);
-       Serial.print("KAF RB:");
-       Serial.println(kaf_R[1]);
-       delay(200);
+//       Serial.print("KAF FA:");
+//       Serial.println(kaf_F[0]);
+//       delay(200);
+//       Serial.print("KAF RA:");
+//       Serial.println(kaf_R[0]);
+//       delay(200);
+//       Serial.print("KAF BA:");
+//       Serial.println(kaf_B[0]);
+//       delay(200);
+//       Serial.print("KAF LA:");
+//       Serial.println(kaf_L[0]);
+//       delay(400);
+//       Serial.print("KAF FB:");
+//       Serial.println(kaf_F[1]);
+//       delay(400);
+//       Serial.print("KAF RB:");
+//       Serial.println(kaf_R[1]);
+//       delay(200);
        Serial.print("KAF BB:");
        Serial.println(kaf_B[1]);
        delay(200);
-       Serial.print("KAF LB:");
-       Serial.println(kaf_L[1]);
-       delay(200);
+//       Serial.print("KAF LB:");
+//       Serial.println(kaf_L[1]);
+//       delay(200);
 }
 
 void SHOWSENSOR(void)

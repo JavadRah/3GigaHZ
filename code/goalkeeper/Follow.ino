@@ -341,6 +341,8 @@ void follow(void)
 ////11///////////////////////STOP///////////////////////////////////
 void STOP(void)
 {
+    r_stop = reduction ;
   reduction = 1;
   MOTOR(set_s, set_s, set_s, set_s);
+   reduction = r_stop;
 }
