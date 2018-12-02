@@ -170,11 +170,15 @@ if(big_sensor>noise&&srfB<85)
 {
 OUT();
 }
-else if(big_sensor>noise&&big_sensor<distanceM/*&&big_sensor<distanceM && srfB>85*/){
- Move_Width();    
- }
-else {
-BackToGoal();}
+else{
+  STOP();
+  BLINK();
+}
+//else if(big_sensor>noise&&big_sensor<distanceM/*&&big_sensor<distanceM && srfB>85*/){
+// Move_Width();    
+// }
+//else {
+//BackToGoal();}
 //  
 //   
 //}=

@@ -2,7 +2,8 @@
 void Calibrate (void)
 {
   for (int k = 0; k < 4; k++)
-  { if (k == 0) {
+  {
+    if (k == 0) {
       STOP();
       delay(110);
       Wire.beginTransmission(address);
@@ -27,6 +28,9 @@ void Calibrate (void)
     Wire.endTransmission();
     digitalWrite(BUZ, LOW);
     delay(3000);
+    if (k == 3) {
+      BLINK();
+    }
   }
 }
 ////5//////COMPASS////
@@ -94,3 +98,13 @@ void boogh(void) {
 }
 
 ///////////////////////////////////////////////////////////////////
+
+void Counter()
+{
+  SHOW_KAF();
+  Serial.print(" | ");
+  Serial.print(big_sensor);
+  Serial.print(" | ");
+  Serial.println(big_sensor_num);
+  set_s = spin_speed(1, 40, 15);
+}

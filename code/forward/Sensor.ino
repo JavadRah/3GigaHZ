@@ -91,9 +91,9 @@ void set_kaf() {
   F_noise [0] = kaf_F[0] + 150;
   F_noise [1] = kaf_F[1] + 90 ;
   L_noise [0] = kaf_L[0] + 100;
-  L_noise [1] = kaf_L[1] + 70 ;
+  L_noise [1] = kaf_L[1] + 60 ;
   R_noise [0] = kaf_R[0] + 70 ;
-  R_noise [1] = kaf_R[1] + 80 ;
+  R_noise [1] = kaf_R[1] + 60 ;
   B_noise [0] = kaf_B[0] + 150;
   B_noise [1] = kaf_B[1] + 190;
 }
@@ -128,30 +128,30 @@ void biggestt(void)
 void SHOWKAF(void)
 {
   Kaf_setup();
-  //       Serial.print("KAF FA:");
-  //       Serial.println(kaf_F[0]);
-  //       delay(200);
-  //       Serial.print("KAF RA:");
-  //       Serial.println(kaf_R[0]);
-  //       delay(200);
-  //       Serial.print("KAF BA:");
-  //       Serial.println(kaf_B[0]);
-  //       delay(200);
-  //       Serial.print("KAF LA:");
-  //       Serial.println(kaf_L[0]);
-  //       delay(200);
-  Serial.print("KAF FB:");
-  Serial.println(kaf_F[1]);
-  delay(200);
-  //       Serial.print("KAF RB:");
-  //       Serial.println(kaf_R[1]);
-  //       delay(200);
-  //       Serial.print("KAF BB:");
-  //       Serial.println(kaf_B[1]);
-  //       delay(200);
-  //       Serial.print("KAF LB:");
-  //       Serial.println(kaf_L[1]);
-  //       delay(200);
+//         Serial.print("KAF FA:");
+//         Serial.println(kaf_F[0]);
+//         delay(200);
+//         Serial.print("KAF RA:");
+//         Serial.println(kaf_R[0]);
+//         delay(200);
+//         Serial.print("KAF BA:");
+//         Serial.println(kaf_B[0]);
+//         delay(200);
+//         Serial.print("KAF LA:");
+//         Serial.println(kaf_L[0]);
+//         delay(200);
+//  Serial.print("KAF FB:");
+//  Serial.println(kaf_F[1]);
+//  delay(200);
+         Serial.print("KAF RB:");
+         Serial.println(kaf_R[1]);
+         delay(200);
+//         Serial.print("KAF BB:");
+//         Serial.println(kaf_B[1]);
+//         delay(200);
+//         Serial.print("KAF LB:");
+//         Serial.println(kaf_L[1]);
+//         delay(200);
 }
 
 void SHOWSENSOR(void)
@@ -193,4 +193,10 @@ void SHOW_KAF()
   Serial.print("F1: "); Serial.print(fa); Serial.print(" F2:"); Serial.print(fb); Serial.print(" R1:"); Serial.print(ra); Serial.print( " R2:");
   Serial.print(rb); Serial.print(" B1:"); Serial.print(ba); Serial.print(" B2:"); Serial.print(bb); Serial.print(" L1:"); Serial.print(la);
   Serial.print(" L2:"); Serial.println(lb);
+}
+void BLINK(void){
+ digitalWrite(led,HIGH);
+ delay(100);
+ digitalWrite(led,LOW);
+ delay(100);
 }

@@ -2,9 +2,10 @@
 /////////////////////////////StarT//////////////////////////////
 #include <Wire.h>
 #include <EEPROM.h>
+IntervalTimer myTimer;
 #define address 0x60
 //-------------------------- VAR -------------------------//
-unsigned int n_cmp, big_sensor, big_sensor_num = 17, r_stop;
+unsigned int n_cmp, big_sensor, big_sensor_num = 17, r_stop,Oskol;
 float reduction;
 ////EEPROM write
 int nSETUP, high, low, counter;
@@ -26,7 +27,7 @@ int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
 bool fa, fb, la, lb, ra, rb, bb, ba;
 char cmp[3], bigsensor[3], bigsensornum[2];
-// const int led = 13;
+ const int led = 13;
 int a[16];
 
 //eeprom
@@ -139,8 +140,11 @@ void setup()
   Wire.begin();
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
-  // Calibrate();
+  myTimer.begin(Counter,25000);
+//  reduction = 0.5;
 
+//   Calibrate();
+//   STOP();
       nSETUP=(EEPROM.read(1)<< 8|EEPROM.read(2));
   R_noise[0]=(EEPROM.read(3)<<8 |EEPROM.read(4));
   R_noise[1]=(EEPROM.read(5)<<8 |EEPROM.read(6));
@@ -154,10 +158,11 @@ void setup()
 
 void loop()
 {
-  reduction = 0.9;
+  reduction = 0.7;
+// Calibrate();
   //set_bits();
   // refreshs();
-//  SHOW_KAF();
+//   SHOW_KAF();
   biggestt();
   set_bits();
 

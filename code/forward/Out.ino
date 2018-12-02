@@ -127,14 +127,16 @@ void OUT(void)
       set_bits();
       set_m = spin_speed(1, 40, 10);
       set_s = spin_speed(1, 40, 10);
-      
+
       if (la)
       {
         Move(4);
       }
       else if (fa || fb)
       {
-        if (fa) Move(7);
+        if (fa) {
+          Move(7);
+        }
         else if (fb)
         {
           while (!fa)
@@ -149,6 +151,26 @@ void OUT(void)
                delay(300);
                break;
               }*/
+          }
+        }
+        if (lb)
+        {
+          while (!la)
+          {
+            set_bits();
+            set_m = spin_speed(1, 40, 10);
+            set_s = spin_speed(1, 40, 10);
+            Move(4);
+          }
+          if (rb || ra)
+          {
+            while (!la)
+            {
+              set_bits();
+              set_m = spin_speed(1, 40, 10);
+              set_s = spin_speed(1, 40, 10);
+              Move(4);
+            }
           }
         }
       }
