@@ -7,31 +7,31 @@ IntervalTimer myTimer;
 //-------------------------- VAR -------------------------//
 unsigned int n_cmp, big_sensor, big_sensor_num = 17,r_stop,nointerrupt;
 float reduction;
-volatile unsigned int interrupt=0,s;
-int nSETUP, high, low;
+volatile unsigned int interrupt=0;
+int nSETUP, high, low,rdc;
 signed int set_m = 0, set_s = 0, Compass;
 char Movement;
-int SRFReader[6];
-char srfl[3];
-char srfb[3];
-char srfr[3], Mode;
-unsigned char O_Mode, Out, Out_old;
-boolean stop_out, other_location, location;
-char bluetooth_input[9], other_dn, dn, c;
-int other_big_sensor , other_sensor_value;
-float battery_voltage, V;
-int Sensor, eeprom_cmp;
+//unsigned char O_Mode, Out, Out_old;
+//boolean stop_out, other_location, location;
+//char bluetooth_input[9], other_dn, dn, c;
+//int other_big_sensor , other_sensor_value;
+//float battery_voltage, V;
+int Sensor;
 unsigned int distance = 450,noise= 50,distanceM=500;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
 bool fa, fb, la, lb, ra, rb, bb, ba;
 char cmp[3], bigsensor[3], bigsensornum[2];
-// const int led = 13;
+char srfl[3];
+char srfb[3];
+char srfr[3], Mode;
+int SRFReader[6];
 int a[16];
+int s;
 void SRF(void);
 //eeprom
- int led=13;
+
 //**************************PINS*************************//
 int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
 int SDA1 = 18, SCLl = 19, GPIO_MRF = 24, GPIO_MLF = 25, GPIO_MRB = 26, GPIO_MLB = 27, BUZ = 28;
@@ -39,6 +39,7 @@ int SOFA = 34, SOFB = 33, SORA = 37, SORB = 38, SOLA = 35, SOLB = 36, SOBA = 32,
 int AD3 = 30, AD2 = 29, AD0 = 9, AD1 = 12;
 int mlf, mrb, mlb, mrf;
 int srfL , srfB , srfR ;
+const int led = 13;
 //******************************************************//
 //......................FUNC.............................//
 
@@ -136,7 +137,7 @@ void setup()
   delay(200);
   digitalWrite(BUZ, LOW);
   delay(100);
-  
+ ////////start/////// 
   Serial.begin(38400);
   Wire.begin();
   analogWriteResolution(10);
@@ -157,9 +158,11 @@ void setup()
 
 void loop()
 {
-    reduction = 0.78;
+  
+ 
+//    reduction = 0.7;
 //Kaf_setup();
-// refreshs();
+//refreshs();
 //SRF();
 //SHOWSENSOR();
 biggestt();
@@ -169,15 +172,17 @@ set_bits();
 //STOP();
 
 /////////////////////////////////
-if(big_sensor>noise&&srfB<60)
+if(big_sensor>noise&&srfB<85)
 {
 OUT();
 }
-else if(big_sensor>noise&&big_sensor<distanceM /*&& srfB<85*/) Move_Width();    
-else BackToGoal();
+else if(big_sensor>noise&&big_sensor<distanceM /*&& srfB<85*/) 
+{Move_Width();
+} 
+else {BackToGoal();
+}
 
 //////////////////////////
-//
 //  set_m = spin_speed(1, 40, 15);
 //  set_s = spin_speed(1, 40, 15);
 
@@ -190,6 +195,8 @@ else BackToGoal();
     Move(i);
     delay(100);
     }*/
+    
+    
   ////////////////////////////
   if (digitalRead(SET) == LOW)
   {

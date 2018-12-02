@@ -162,6 +162,7 @@ void Move(int a)
 //////////////////////////////////////////////////////////////
 void follow(void)
 {
+  s=1;
   refreshs();
   biggestt();
   if (big_sensor > distance )
@@ -169,32 +170,32 @@ void follow(void)
           set_bits();
           if (SORB == 1)
           {
-            stop_out = 1;
+//            stop_out = 1;
             Move(9);
           }
           else if (SOLB == 1)
           {
-            stop_out = 1;
+//            stop_out = 1;
             Move(7);
           }
           else if (SOBA == 1 && big_sensor_num > 1 && big_sensor_num < 8)
           {
-            stop_out = 0;
+//            stop_out = 0;
             Move(4);
           }
           else if (SOBA == 1 && big_sensor_num < 13 && big_sensor_num > 9)
           {
-            stop_out = 1;
+//            stop_out = 1;
             Move(12);
           }
           else if (SOBB == 1  && big_sensor_num > 3 && big_sensor_num < 8)
           {
-            stop_out = 1;
+//            stop_out = 1;
             Move(2);
           }
           else if (SOBB == 1  && big_sensor_num < 13 && big_sensor_num > 9)
           {
-            stop_out = 1;
+//            stop_out = 1;
             Move(13);
           }
           else
@@ -341,8 +342,8 @@ void follow(void)
 ////11///////////////////////STOP///////////////////////////////////
 void STOP(void)
 {
-    r_stop = reduction ;
+  r_stop = reduction ;
   reduction = 1;
   MOTOR(set_s, set_s, set_s, set_s);
-   reduction = r_stop;
+  reduction = r_stop;
 }

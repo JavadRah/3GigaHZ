@@ -127,30 +127,31 @@ void biggestt(void)
 void SHOWKAF(void)
 {
   Kaf_setup();
-//       Serial.print("KAF FA:");
-//       Serial.println(kaf_F[0]);
-//       delay(200);
-//       Serial.print("KAF RA:");
-//       Serial.println(kaf_R[0]);
-//       delay(200);
-//       Serial.print("KAF BA:");
-//       Serial.println(kaf_B[0]);
-//       delay(200);
-//       Serial.print("KAF LA:");
-//       Serial.println(kaf_L[0]);
-//       delay(400);
-//       Serial.print("KAF FB:");
-//       Serial.println(kaf_F[1]);
-//       delay(400);
-//       Serial.print("KAF RB:");
-//       Serial.println(kaf_R[1]);
-//       delay(200);
-       Serial.print("KAF BB:");
-       Serial.println(kaf_B[1]);
-       delay(200);
-//       Serial.print("KAF LB:");
-//       Serial.println(kaf_L[1]);
-//       delay(200);
+       Serial.println(" ");
+       Serial.print("FA:");
+       Serial.print(kaf_F[0]);
+
+       Serial.print("RA:");
+       Serial.print(kaf_R[0]);
+ 
+       Serial.print("BA:");
+       Serial.print(kaf_B[0]);
+
+       Serial.print("LA:");
+       Serial.print(kaf_L[0]);
+  
+       Serial.print("FB:");
+       Serial.print(kaf_F[1]);
+ 
+       Serial.print("RB:");
+       Serial.print(kaf_R[1]);
+      
+       Serial.print("BB:");
+       Serial.print(kaf_B[1]);
+
+       Serial.print("LB:");
+       Serial.print(kaf_L[1]);
+
 }
 
 void SHOWSENSOR(void)

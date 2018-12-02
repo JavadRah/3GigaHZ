@@ -53,7 +53,7 @@ void ultrasonicr(void) {
 
 void SRF()
 {
-  if (nointerrupt == 0)
+    if (nointerrupt == 0)
   {
     interrupt++;
     if (interrupt == 3) {
@@ -64,11 +64,25 @@ void SRF()
       interrupt = 0;
     }
     set_s = spin_speed(1, 40, 15);
-//    SHOWSRF
-//    Serial.println(n_cmp);
+    set_m = spin_speed(1, 40, 15);
+    if(s==1)
+    {
+    reduction=0.7;  
+    }
+     if(s==2)
+    {
+     reduction=0.7; 
+    }
+     if(s==3)
+    {
+     reduction=0.4; 
+    }
+     if(s==4)
+    {
+    reduction=0.5 ; 
+    }
   }
-    reduction =  0.7;
-
+Serial.println(n_cmp);
   //  SHOW_KAF();
 //     Serial.println(" ");
 //    Serial.print("b=");
@@ -82,7 +96,7 @@ void SRF()
 //
 void BackToGoal(void)
 {
-  reduction = 0.4;
+s=3;
   //  stop_out = 1;
 
   if (abs(Compass) > 20) {
@@ -106,7 +120,7 @@ void BackToGoal(void)
   {
     Move(8);
   }
-  else if (srfB < 40)
+  else if (srfB < 30)
   {
     Move(0);
   }
@@ -124,15 +138,15 @@ void BackToGoal(void)
 // ////////////////////////////////////////////////////////////////////////////////
 void Move_Width (void)
 {
+  digitalWrite(BUZ,HIGH);
+  s=4;
   biggestt();
   if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR > 60)
   {
-    reduction = 0.5;
     Move(4);
   }
   else if (big_sensor_num < 16 && big_sensor_num >= 12 && srfL > 80)
   {
-    reduction = 0.5;
     Move(12);
   }
 
