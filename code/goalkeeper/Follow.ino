@@ -162,111 +162,112 @@ void Move(int a)
 //////////////////////////////////////////////////////////////
 void follow(void)
 {
-  s=1;
+  s = 1;
   refreshs();
   biggestt();
   if (big_sensor > distance )
   {
-          set_bits();
-          if (SORB == 1)
-          {
-//            stop_out = 1;
-            Move(9);
-          }
-          else if (SOLB == 1)
-          {
-//            stop_out = 1;
-            Move(7);
-          }
-          else if (SOBA == 1 && big_sensor_num > 1 && big_sensor_num < 8)
-          {
-//            stop_out = 0;
-            Move(4);
-          }
-          else if (SOBA == 1 && big_sensor_num < 13 && big_sensor_num > 9)
-          {
-//            stop_out = 1;
-            Move(12);
-          }
-          else if (SOBB == 1  && big_sensor_num > 3 && big_sensor_num < 8)
-          {
-//            stop_out = 1;
-            Move(2);
-          }
-          else if (SOBB == 1  && big_sensor_num < 13 && big_sensor_num > 9)
-          {
-//            stop_out = 1;
-            Move(13);
-          }
-          else
-          {
-    switch (big_sensor_num)
+    set_bits();
+    if (SORB == 1)
     {
-      case 0:
-        Move(0);
-        break;
-
-      case 1:
-        Move(2);
-        break;
-
-      case 2:
-        Move(4);
-        break;
-
-      case 3:
-        Move(5);
-        break;
-
-      case 4:
-        Move(6);
-        break;
-
-      case 5:
-        Move(8);
-        break;
-
-      case 6:
-        Move(8);
-        break;
-
-      case 7:
-        Move(10);
-        break;
-
-      case 8:
-        Move(5);
-        break;
-
-      case 9:
-        Move(6);
-        break;
-
-      case 10:
-        Move(8);
-        break;
-
-      case 11:
-        Move(8);
-        break;
-
-      case 12:
-        Move(10);
-        break;
-
-      case 13:
-        Move(11);
-        break;
-
-      case 14:
-        Move(12);
-        break;
-
-      case 15:
-        Move(14);
-        break;
+      //            stop_out = 1;
+      Move(9);
     }
-  }}
+    else if (SOLB == 1)
+    {
+      //            stop_out = 1;
+      Move(7);
+    }
+    else if (SOBA == 1 && big_sensor_num > 1 && big_sensor_num < 8)
+    {
+      //            stop_out = 0;
+      Move(4);
+    }
+    else if (SOBA == 1 && big_sensor_num < 13 && big_sensor_num > 9)
+    {
+      //            stop_out = 1;
+      Move(12);
+    }
+    else if (SOBB == 1  && big_sensor_num > 3 && big_sensor_num < 8)
+    {
+      //            stop_out = 1;
+      Move(2);
+    }
+    else if (SOBB == 1  && big_sensor_num < 13 && big_sensor_num > 9)
+    {
+      //            stop_out = 1;
+      Move(13);
+    }
+    else
+    {
+      switch (big_sensor_num)
+      {
+        case 0:
+          Move(0);
+          break;
+
+        case 1:
+          Move(2);
+          break;
+
+        case 2:
+          Move(4);
+          break;
+
+        case 3:
+          Move(5);
+          break;
+
+        case 4:
+          Move(6);
+          break;
+
+        case 5:
+          Move(8);
+          break;
+
+        case 6:
+          Move(8);
+          break;
+
+        case 7:
+          Move(10);
+          break;
+
+        case 8:
+          Move(5);
+          break;
+
+        case 9:
+          Move(6);
+          break;
+
+        case 10:
+          Move(8);
+          break;
+
+        case 11:
+          Move(8);
+          break;
+
+        case 12:
+          Move(10);
+          break;
+
+        case 13:
+          Move(11);
+          break;
+
+        case 14:
+          Move(12);
+          break;
+
+        case 15:
+          Move(14);
+          break;
+      }
+    }
+  }
   else
   {
     switch (big_sensor_num)
@@ -335,7 +336,7 @@ void follow(void)
         Move(15);
         break;
     }
-   }
+  }
 }
 
 

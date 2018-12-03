@@ -102,9 +102,9 @@ void Counter()
 {
   if (nointerrupt == 0)
   {
-    set_s = spin_speed(1, 40, 15);
-    set_m = spin_speed(1, 40, 15);
-    Serial.println(Compass);
-    reduction =  0.7;
+    set_s = spin_speed(1, 40, 10);
+    set_m = spin_speed(1, 40, 10);
+    reduction = 0.7;
+    Read_Compass();
   }
 }

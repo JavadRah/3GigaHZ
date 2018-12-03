@@ -6,7 +6,7 @@ IntervalTimer myTimer;
 #define address 0x60
 //-------------------------- VAR -------------------------//
 unsigned int n_cmp, big_sensor, big_sensor_num = 17, r_stop, nointerrupt;
-float reduction;
+float reduction, z;
 ////EEPROM write
 int nSETUP, high, low, counter;
 signed int set_m = 0, set_s = 0, Compass;
@@ -34,13 +34,12 @@ int a[16];
 //**************************PINS*************************//
 int RX = 0, TX = 1, SET = 2, RX1 = 7, TX1 = 8, PWM_MRF = 22, PWM_MLF = 21, PWM_MRB = 20, PWM_MLB = 10, SHOOT = 11;
 int SDA1 = 18, SCLl = 19, GPIO_MRF = 24, GPIO_MLF = 25, GPIO_MRB = 26, GPIO_MLB = 27, BUZ = 28;
-int SOFA = 34, SOFB = 33, SORA = 37, SORB = 38, SOLA = 35, SOLB = 36, SOBA = 32, SOBB = 31, FEEDBACK = 21, SCENSE1 = 14, SCENSE2 = 15, BALL = 39, D4 = 3, D3 = 4, D2 = 5, D1 = 6;
+int SOFA = 34, SOFB = 33, SORA = 37, SORB = 38, SOLA = 35, SOLB = 36, SOBA = 32, SOBB = 31, FEEDBACK = A21, SCENSE1 = 14, SCENSE2 = 15, BALL = 39, D4 = 3, D3 = 4, D2 = 5, D1 = 6;
 int AD3 = 30, AD2 = 29, AD0 = 9, AD1 = 12;
 int mlf, mrb, mlb, mrf;
 int srfL , srfB , srfR ;
 //******************************************************//
 //......................FUNC.............................//
-;;;
 
 //15///////////////////////WIN///////////////////////
 //void win(void)
@@ -114,6 +113,7 @@ void setup()
   pinMode(SOLB, INPUT);
   pinMode(BUZ, OUTPUT);
   pinMode(SET, INPUT_PULLUP);
+  pinMode(FEEDBACK, INPUT);
   //  pinMode(D1,INPUT);
   //  pinMode(D2,INPUT);
   //  pinMode(D3,INPUT);
@@ -138,9 +138,9 @@ void setup()
   Wire.begin();
   analogWriteResolution(10);
   analogWriteFrequency(20, 29296);
-  myTimer.begin(Counter, 25000);
+    myTimer.begin(Counter, 25000);
 
-//     Calibrate();
+  //       Calibrate();
   //   STOP();
   nSETUP = (EEPROM.read(1) << 8 | EEPROM.read(2));
   R_noise[0] = (EEPROM.read(3) << 8 | EEPROM.read(4));
@@ -155,29 +155,39 @@ void setup()
 
 void loop()
 {
-  //set_bits();
-  // refreshs();
-  //   SHOW_KAF();
+  //  get_battery_voltage();
+  //  z = analogRead(FEEDBACK);
+  //  Serial.println(z);
+
+  //  delay(50);
   biggestt();
   set_bits();
-
+  // refreshs();
+  // SHOW_KAF();
   //   SHOWSENSOR();
-  if (big_sensor > noise)
-  {
-    OUT();
-  }
-  else
-    STOP();
+  //    biggestt();
+  //    set_bits();
+  //    set_s = spin_speed(1, 50, 5);
+  //    set_m = spin_speed(1, 50, 5);
+  //  reduction=0.9;
+      if (big_sensor > noise)
+      {
+        OUT();
+      }
+      else
+        STOP();
 
   //////harekate vazie mah//////
-  /*
-    for(int i = 0;i< 16; i++)
-    {
-    Serial.print(i);
-    Serial.print(" : ");
-    //    Move(i);
-    delay(100);
-    }*/
+
+//  for (int i = 0; i < 16; i++)
+//  {
+//    //    Serial.print(i);
+//    //    Serial.print(" : ");
+//    reduction = 0.6;
+//    Move(i);
+//    delay(100);
+//  }
+
   ////////////////////////////
   if (digitalRead(SET) == LOW)
   {

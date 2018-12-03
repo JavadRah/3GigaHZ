@@ -79,10 +79,10 @@ void SRF()
     }
      if(s==4)
     {
-    reduction=0.5 ; 
+    reduction=0.6 ; 
     }
   }
-Serial.println(n_cmp);
+//Serial.println(n_cmp);
   //  SHOW_KAF();
 //     Serial.println(" ");
 //    Serial.print("b=");
@@ -138,7 +138,6 @@ s=3;
 // ////////////////////////////////////////////////////////////////////////////////
 void Move_Width (void)
 {
-  digitalWrite(BUZ,HIGH);
   s=4;
   biggestt();
   if (big_sensor_num >= 0 && big_sensor_num <= 4 && srfR > 60)

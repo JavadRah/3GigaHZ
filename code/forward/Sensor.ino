@@ -17,6 +17,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
+  SENSOR[2]=0;
 }
 
 
@@ -98,10 +99,11 @@ void set_kaf() {
   B_noise [1] = kaf_B[1] + 190;
 }
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
-//void get_battery_voltage()
-//{
-//  battery_voltage = (FEEDBACK * 12.7) / 524;
-//}
+void get_battery_voltage()
+{
+  battery_voltage = (FEEDBACK * 12.7) / 560;
+}
+///////nesbat44/////////
 ////20////////////////////BIG SENSOR/////////////////////////////////
 void biggestt(void)
 {
