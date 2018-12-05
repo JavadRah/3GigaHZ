@@ -17,7 +17,7 @@ char Movement;
 //int other_big_sensor , other_sensor_value;
 //float battery_voltage, V;
 int Sensor;
-unsigned int distance = 450, noise = 50, distanceM = 450;
+unsigned int distance = 450, noise = 70, distanceM = 450;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
@@ -118,10 +118,10 @@ void setup()
   pinMode(BUZ, OUTPUT);
   pinMode(led, OUTPUT);
   pinMode(SET, INPUT_PULLUP);
-  pinMode(D1, INPUT);
-  pinMode(D2, INPUT);
-  pinMode(D3, INPUT);
-  pinMode(D4, INPUT);
+//  pinMode(D1, INPUT);
+//  pinMode(D2, INPUT);
+//  pinMode(D3, INPUT);
+//  pinMode(D4, INPUT);
   pinMode(led, OUTPUT);
   //  //pinMode(,);
   //=============================================//
@@ -158,20 +158,16 @@ void setup()
 
 void loop()
 {
-
-
-  //reduction = 0.7;
   //Kaf_setup();
   //refreshs();
   //SHOWKAF
-
   biggestt();
   set_bits();
  
   ///////////////////////////////////
   if(big_sensor>noise)
   {
-    if (big_sensor>distanceM & srfB<70)
+    if (big_sensor>distanceM & srfB<60)
     {
       OUT();
     }
@@ -230,15 +226,15 @@ void loop()
     Kaf_setup();
   }
   ////////////////////////DIP
-  if (digitalRead(D1) == HIGH)
-  {
-    while (digitalRead(D1) == HIGH)
-    {
-      digitalWrite(BUZ, HIGH);
-      SHOWSENSOR();
-    }
-    digitalWrite(BUZ,LOW);
-  }
+//  if (digitalRead(D1) == HIGH)
+//  {
+//    while (digitalRead(D1) == HIGH)
+//    {
+//      digitalWrite(BUZ, HIGH);
+//      SHOWSENSOR();
+//    }
+//    digitalWrite(BUZ,LOW);
+//  }
 
   //     if(digitalRead(D2)==HIGH)
   //      {

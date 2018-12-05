@@ -17,7 +17,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-  SENSOR[2]=0;
+  SENSOR[2]=((SENSOR[1]+SENSOR[2])/2);
 }
 
 
