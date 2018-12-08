@@ -21,7 +21,7 @@ char bluetooth_input[9], other_dn, dn, c;
 int other_big_sensor , other_sensor_value;
 float battery_voltage, V;
 int Sensor, eeprom_cmp;
-unsigned int distance = 450 , noise = 50, intrt = 0;
+unsigned int distance = 450 , noise = 70, intrt = 0;
 int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;

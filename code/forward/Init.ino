@@ -106,5 +106,6 @@ void Counter()
     set_m = spin_speed(1, 40, 10);
     reduction = 0.7;
     Read_Compass();
+    SHOWSENSOR();
   }
 }

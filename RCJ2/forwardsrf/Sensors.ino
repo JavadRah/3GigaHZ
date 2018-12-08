@@ -1,4 +1,4 @@
-/////////////////////////////////
+/////////////////////////
 unsigned int  convert_adc(int Sensor) {
   int a = 0;
   digitalWrite(AD0, (((Sensor) / 1) % 2));
@@ -17,7 +17,7 @@ void refreshs(void)
 
     if (SENSOR[k] > 1000) SENSOR[k] = 0;
   }
-  SENSOR[2]=((SENSOR[3]+SENSOR[2])/2);
+   //SENSOR[15]=SENSOR[15]-50; 
 }
 
 
@@ -62,6 +62,8 @@ void set_bits(void)
   kaf_L[1] =  analogRead(36);
 
   //////////////////out of bound 1
+
+  ////////////////////////////////////
   if (R_noise[0] < kaf_R[0])  ra = 1;
   else   ra = 0;
 
@@ -95,10 +97,14 @@ void set_kaf() {
   L_noise [1] = kaf_L[1] + 60 ;
   R_noise [0] = kaf_R[0] + 70 ;
   R_noise [1] = kaf_R[1] + 60 ;
-  B_noise [0] = kaf_B[0] + 150;
-  B_noise [1] = kaf_B[1] + 190;
+  B_noise [0] = kaf_B[0] + 100;
+  B_noise [1] = kaf_B[1] + 80;
 }
-
+////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
+//void get_battery_voltage()
+//{
+//  battery_voltage = (FEEDBACK * 12.7) / 524;
+//}
 ////20////////////////////BIG SENSOR/////////////////////////////////
 void biggestt(void)
 {
@@ -114,10 +120,6 @@ void biggestt(void)
   }
   big_sensor = c;
   big_sensor_num = b;
-  //      Serial.print(b);
-  //      Serial.print(" | ");
-  //      Serial.println(c);
-  //      delay(500);
 }
 
 
@@ -125,30 +127,31 @@ void biggestt(void)
 void SHOWKAF(void)
 {
   Kaf_setup();
-//         Serial.print("KAF FA:");
-//         Serial.println(kaf_F[0]);
-//         delay(200);
-//         Serial.print("KAF RA:");
-//         Serial.println(kaf_R[0]);
-//         delay(200);
-//         Serial.print("KAF BA:");
-//         Serial.println(kaf_B[0]);
-//         delay(200);
-//         Serial.print("KAF LA:");
-//         Serial.println(kaf_L[0]);
-//         delay(200);
-//  Serial.print("KAF FB:");
-//  Serial.println(kaf_F[1]);
-//  delay(200);
-         Serial.print("KAF RB:");
-         Serial.println(kaf_R[1]);
-         delay(200);
-//         Serial.print("KAF BB:");
-//         Serial.println(kaf_B[1]);
-//         delay(200);
-//         Serial.print("KAF LB:");
-//         Serial.println(kaf_L[1]);
-//         delay(200);
+       Serial.println(" ");
+       Serial.print("FA:");
+       Serial.print(kaf_F[0]);
+
+       Serial.print("RA:");
+       Serial.print(kaf_R[0]);
+ 
+       Serial.print("BA:");
+       Serial.print(kaf_B[0]);
+
+       Serial.print("LA:");
+       Serial.print(kaf_L[0]);
+  
+       Serial.print("FB:");
+       Serial.print(kaf_F[1]);
+ 
+       Serial.print("RB:");
+       Serial.print(kaf_R[1]);
+      
+       Serial.print("BB:");
+       Serial.print(kaf_B[1]);
+
+       Serial.print("LB:");
+       Serial.print(kaf_L[1]);
+
 }
 
 void SHOWSENSOR(void)
@@ -165,24 +168,24 @@ void SHOWSENSOR(void)
   }
   Serial.println(" ");
 
-  sprintf (bigsensornum, "%03d", big_sensor_num);
-  //    Serial.print("big sensor number=");
-  Serial.print(bigsensornum);
-  delay(50);
-  Serial.print(" | ");
-  sprintf (bigsensor, "%03d", big_sensor);
+    sprintf (bigsensornum, "%03d", big_sensor_num);
+//    Serial.print("big sensor number=");
+    Serial.print(bigsensornum);
+    delay(50);
+     Serial.print(" | ");
+    sprintf (bigsensor, "%03d", big_sensor);
   //  Serial.print("big sensor=");
-  Serial.println(bigsensor);
+    Serial.println(bigsensor);
   //  delay(50);
 }
 void SHOWCMP()
 {
-  Read_Compass();
-  CMPS();
-  Serial.print(nSETUP);
-  Serial.print(" | ");
-  Serial.println(CMPS()); //Compass
-  delay(10);
+   Read_Compass();
+    CMPS();
+    Serial.print(nSETUP);
+    Serial.print(" | ");
+    Serial.println(CMPS()); //Compass
+    delay(10);
 }
 void SHOW_KAF()
 {
@@ -190,10 +193,4 @@ void SHOW_KAF()
   Serial.print("F1: "); Serial.print(fa); Serial.print(" F2:"); Serial.print(fb); Serial.print(" R1:"); Serial.print(ra); Serial.print( " R2:");
   Serial.print(rb); Serial.print(" B1:"); Serial.print(ba); Serial.print(" B2:"); Serial.print(bb); Serial.print(" L1:"); Serial.print(la);
   Serial.print(" L2:"); Serial.println(lb);
-}
-void BLINK(void){
- digitalWrite(led,HIGH);
- delay(100);
- digitalWrite(led,LOW);
- delay(100);
 }

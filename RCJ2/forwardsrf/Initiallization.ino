@@ -3,7 +3,8 @@ void Calibrate (void)
 {
   for (int k = 0; k < 4; k++)
   {
-    //    if (k == 0) {
+    nointerrupt = 100;
+    //if (k == 0) {
     //      STOP();
     //      delay(110);
     //      Wire.beginTransmission(address);
@@ -20,7 +21,6 @@ void Calibrate (void)
     //    MOTOR(1023, 1023, 1023, 1023);
     //    delay(110);
     //    STOP();
-    nointerrupt = 100;
     Wire.beginTransmission(address);
     digitalWrite(BUZ, HIGH);
     delay(100);
@@ -42,6 +42,7 @@ void Read_Compass()
   n_cmp = ((Wire.read() << 8) | Wire.read());
   Wire.endTransmission();
   n_cmp = map(n_cmp, 0, 3600, 0, 1023);
+  interrupts();
 }
 ////6/////////////CMP////////////////////////////////////
 signed int CMPS(void)
@@ -84,34 +85,3 @@ signed int spin_speed(int divided_value, int added_value, int zero_degree)
   return compass_output;
 }
 /////////////////////////////////////////////////////////////////
-void boogh(void)
-{
-  digitalWrite(BUZ, HIGH);
-  delay(100);
-  digitalWrite(BUZ, LOW);
-  delay(100);
-  digitalWrite(BUZ, HIGH);
-  delay(100);
-  digitalWrite(BUZ, LOW);
-  delay(100);
-}
-
-///////////////////////////////////////////////////////////////////
-
-void Counter()
-{
-  if (nointerrupt == 0)
-  {
-    set_s = spin_speed(1, 40, 10);
-    set_m = spin_speed(1, 40, 10);
-    reduction = 1;
-    Read_Compass();
-    //Serial.println(Compass);
-  }
-}
-////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
-void get_battery_voltage()
-{
-  battery_voltage = (FEEDBACK * 12.7) / 560;
-}
-///////nesbat44////////////////////////////////////////////////////////////

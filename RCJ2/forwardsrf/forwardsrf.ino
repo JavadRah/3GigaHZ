@@ -165,21 +165,7 @@ void loop()
   set_bits();
  
   ///////////////////////////////////
-  if(big_sensor>noise)
-  {
-    if (big_sensor>distanceM && srfB<60)
-    {
-      OUT();
-    }
-    else
-    { 
-      Move_Width();
-    }
-  }
-  else {
-    
-    BackToGoal();
-  }
+//
 //  //////harekate vazie mah//////
   /*
     for(int i = 0;i< 16; i++)
@@ -190,7 +176,12 @@ void loop()
     delay(100);
     }*/
 
-
+     if (big_sensor > noise)
+      {
+        OUT();
+      }
+      else
+        STOP();
   ////////////////////////////SET
   if (digitalRead(SET) == LOW)
   {
