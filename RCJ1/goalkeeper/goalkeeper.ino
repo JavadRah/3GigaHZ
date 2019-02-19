@@ -165,21 +165,30 @@ void loop()
   set_bits();
  
   ///////////////////////////////////
-  if(big_sensor>noise)
+//  if(big_sensor>noise)
+//  {
+//    if (big_sensor>distanceM && srfB<60)
+//    {
+//      OUT();
+//    }
+//    else
+//    { 
+//      Move_Width();
+//    }
+//  }
+//  else {
+//    
+//    BackToGoal();
+//  }
+  if (big_sensor>noise && srfB<60)
   {
-    if (big_sensor>distanceM && srfB<60)
+    if ((big_sensor>distanceM)|| (big_sensor_num>12 || big_sensor_num <4)) 
     {
       OUT();
     }
-    else
-    { 
-      Move_Width();
-    }
+    else Move_Width();
   }
-  else {
-    
-    BackToGoal();
-  }
+  else BackToGoal();
 //  //////harekate vazie mah//////
   /*
     for(int i = 0;i< 16; i++)

@@ -168,6 +168,7 @@ void follow(void)
   if (big_sensor > distance )
   {
     set_bits();
+    //must be commented
     if (SORB == 1)
     {
       //            stop_out = 1;

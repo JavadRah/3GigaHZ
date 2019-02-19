@@ -93,7 +93,7 @@ void OUT(void)
   }
   else if (la || lb)
   {
-    //boogh();
+   
     while (big_sensor_num > 8)
     {
       biggestt();

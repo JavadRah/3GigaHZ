@@ -158,10 +158,10 @@ void loop()
   //  get_battery_voltage();
   //  z = analogRead(FEEDBACK);
   //  Serial.println(z);
-
+SHOWSENSOR();
   //  delay(50);
-  biggestt();
-  set_bits();
+//  biggestt();
+//  set_bits();
   // refreshs();
   // SHOW_KAF();
   //   SHOWSENSOR();
@@ -170,13 +170,14 @@ void loop()
   //    set_s = spin_speed(1, 50, 5);
   //    set_m = spin_speed(1, 50, 5);
   //  reduction=0.9;
+  /*
       if (big_sensor > noise)
       {
         OUT();
       }
       else
         STOP();
-
+*/
   //////harekate vazie mah//////
 
 //  for (int i = 0; i < 16; i++)
