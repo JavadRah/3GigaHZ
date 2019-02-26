@@ -55,7 +55,7 @@ GenerateClassCluster=0
 DocumentUniqueId=CCJRYDOI
 
 [Document2]
-DocumentPath=front.PcbDoc
+DocumentPath=Copy of front.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -69,7 +69,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=WLTUYUMJ
+DocumentUniqueId=NDVCMUVV
 
 [Configuration1]
 Name=Sources
