@@ -22,7 +22,7 @@ int kaf_F[2] , kaf_L[2] , kaf_B[2] , kaf_R[2] , Dip[4], DSensor[20];
 int F_noise[2], R_noise[2], L_noise[2], B_noise[2], SENSOR[17];
 int Sofa, Sofb, Sola, Solb, Sora, Sorb, Sobb, Soba;
 bool fa, fb, la, lb, ra, rb, bb, ba;
-char cmp[3], bigsensor[3], bigsensornum[2];
+char cmp[4], bigsensor[4], bigsensornum[4];
 char srfl[3];
 char srfb[3];
 char srfr[3], Mode;

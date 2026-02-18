@@ -101,7 +101,7 @@ void set_kaf() {
 ////14//////////////////////////VOLTAGE BATTERY/////////////////////////////
 void get_battery_voltage()
 {
-  battery_voltage = (FEEDBACK * 12.7) / 560;
+  battery_voltage = (analogRead(FEEDBACK) * 12.7) / 560;
 }
 ///////nesbat44/////////
 ////20////////////////////BIG SENSOR/////////////////////////////////
